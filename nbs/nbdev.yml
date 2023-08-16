@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "gdoc_sync"
+  site-url: "https://jaewilson07.github.io/gdoc_sync"
+  description: "integrate google docs with github"
+  repo-branch: main
+  repo-url: "https://github.com/jaewilson07/gdoc_sync"
