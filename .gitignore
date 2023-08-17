@@ -3,6 +3,7 @@ _proc/
 
 *.bak
 .gitattributes
+env*.json
 .last_checked
 .gitconfig
 *.bak
