@@ -2,5 +2,10 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - 00_creds.ipynb
-      - 01_drive.ipynb
+      - section: asana
+        contents:
+          - asana/01_asana.ipynb
+      - section: google
+        contents:
+          - google/00_creds.ipynb
+          - google/01_drive.ipynb
