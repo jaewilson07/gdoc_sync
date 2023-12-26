@@ -12,10 +12,9 @@ import gdoc_sync.asana.auth as aa
 import gdoc_sync.client as gd
 
 # %% auto 0
-__all__ = ["AsanaUser"]
+__all__ = ['AsanaUser']
 
-
-# %% ../../nbs/asana/01_user.ipynb 3
+# %% ../../nbs/asana/01_user.ipynb 4
 @dataclass
 class AsanaUser:
     id: str
@@ -34,8 +33,7 @@ class AsanaUser:
             auth=auth,
         )
 
-
-# %% ../../nbs/asana/01_user.ipynb 6
+# %% ../../nbs/asana/01_user.ipynb 7
 @patch_to(AsanaUser, cls_method=True)
 async def get_by_id(
     cls,

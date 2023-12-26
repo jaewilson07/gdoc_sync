@@ -3,14 +3,9 @@
 # %% ../../nbs/asana/01_project.ipynb 2
 from __future__ import annotations
 
-from dotenv import load_dotenv
-import os
-import json
 from dataclasses import dataclass, field
 from typing import List
 import datetime as dt
-from dateutil.parser import parse as dtu_parse
-from mdutils.mdutils import MdUtils
 
 from nbdev.showdoc import patch_to
 
@@ -20,8 +15,7 @@ import gdoc_sync.asana.auth as aa
 import gdoc_sync.asana.user as au
 
 # %% auto 0
-__all__ = ["AsanaProject", "AsanaSection", "AsanaMembership"]
-
+__all__ = ['AsanaProject']
 
 # %% ../../nbs/asana/01_project.ipynb 4
 @dataclass
@@ -44,7 +38,7 @@ class AsanaProject:
     due_date: dt.datetime = None
     completed_date: dt.datetime = None
 
-    tasks: List[AsanaTask] = None
+    tasks = None  # AsanaTask
 
     @classmethod
     def _from_json(cls, obj, auth: aa.AsanaAuth):
@@ -63,10 +57,10 @@ class AsanaProject:
             else None
         )
 
-        created_date = ut.get_date(obj.get("created_at"))
-        modified_date = ut.get_date(obj.get("modified_at"))
-        due_date = ut.get_date(obj.get("due_on"))
-        completed_date = ut.get_date(obj.get("completed_at"))
+        created_date = ut.convert_str_to_date(obj.get("created_at"))
+        modified_date = ut.convert_str_to_date(obj.get("modified_at"))
+        due_date = ut.convert_str_to_date(obj.get("due_on"))
+        completed_date = ut.convert_str_to_date(obj.get("completed_at"))
 
         return cls(
             auth=auth,
@@ -84,54 +78,11 @@ class AsanaProject:
             completed_date=completed_date,
         )
 
-
 # %% ../../nbs/asana/01_project.ipynb 5
-@dataclass
-class AsanaSection:
-    id: str
-    name: str
-    resource_type: str
-    auth: aa.AsanaAuth = field(repr=False)
-
-    @classmethod
-    def _from_json(cls, data: dict, auth: aa.AsanaAuth) -> "AsanaSection":
-        return cls(
-            id=data.get("gid"),
-            name=data.get("name"),
-            resource_type=data.get("resource_type"),
-            auth=auth,
-        )
-
-
-@dataclass
-class AsanaMembership:
-    project: AsanaProject
-    section: AsanaSection
-    auth: aa.AsanaAuth = field(repr=False)
-
-    @classmethod
-    def _from_json(cls, data: dict, auth: aa.AsanaAuth) -> "AsanaMembership":
-        project = (
-            AsanaProject._from_json(data["project"], auth=auth)
-            if data.get("project")
-            else None
-        )
-        section = (
-            AsanaSection._from_json(data["section"], auth=auth)
-            if data.get("section")
-            else None
-        )
-        return cls(project=project, section=section, auth=auth)
-
-    def to_text(self):
-        return f"{self.project.name} -> {self.section.name}"
-
-
-# %% ../../nbs/asana/01_project.ipynb 6
 @patch_to(AsanaProject, cls_method=True)
 async def get_projects(
     cls: AsanaProject,
-    auth: AsanaAuth,
+    auth: aa.AsanaAuth,
     debug_api: bool = False,
     return_raw: bool = False,
 ):
@@ -143,6 +94,7 @@ async def get_projects(
         url=url,
         debug_api=debug_api,
     )
+
     if return_raw:
         return res
 
@@ -151,12 +103,11 @@ async def get_projects(
         for proj_obj in res.response["data"]
     ]
 
-
-# %% ../../nbs/asana/01_project.ipynb 9
+# %% ../../nbs/asana/01_project.ipynb 8
 @patch_to(AsanaProject, cls_method=True)
 async def get_by_id(
     cls: AsanaProject,
-    auth: AsanaAuth,
+    auth: aa.AsanaAuth,
     project_id,
     debug_api: bool = False,
     return_raw: bool = False,

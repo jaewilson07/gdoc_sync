@@ -6,40 +6,29 @@ from __future__ import annotations
 import os
 from typing import Any, Union
 from dataclasses import dataclass, field
-from abc import abstractmethod, ABC, abstractproperty
+from abc import abstractmethod, ABC
+
+from urllib.parse import urlparse
 
 import httpx
 import json
 
 from pprint import pprint
 
-from dateutil.parser import parse as dtu_parse
-import re
+import gdoc_sync.utils as ut
 
 # %% auto 0
-__all__ = ["Auth", "ResponseGetData", "get_cache", "update_cache", "get_data", "looper"]
-
+__all__ = ['Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'get_data', 'looper']
 
 # %% ../nbs/client/client.ipynb 5
 @dataclass
 class Auth(ABC):
     """Base class for authentication"""
 
-    @property
-    @abstractmethod
-    def auth_header(self) -> str:
-        ...
-
-    @auth_header.setter
-    @abstractmethod
-    def auth_header(self, val: str):
-        ...
-
     @abstractmethod
     def generate_auth_header(self) -> dict:
         """Get the headers for the authentication"""
         pass
-
 
 # %% ../nbs/client/client.ipynb 6
 @dataclass
@@ -76,7 +65,6 @@ class ResponseGetData:
             auth=auth,
         )
 
-
 # %% ../nbs/client/client.ipynb 11
 def get_cache(
     json_cache_path: str,
@@ -85,11 +73,15 @@ def get_cache(
     """function for getting cached data from json file"""
 
     json_data = None
+    ut.upsert_folder(json_cache_path)
+
     try:
         with open(json_cache_path, "r", encoding="utf-8") as file:
             json_data = json.load(file)
 
     except (FileNotFoundError, json.JSONDecodeError) as e:
+        with open(json_cache_path, "w+", encoding="utf-8") as file:
+            pass
         json_data = None
 
     if json_data:
@@ -100,11 +92,12 @@ def get_cache(
 
 
 def update_cache(json_cache_path: str, json_data: dict):
+    ut.upsert_folder(json_cache_path)
+
     with open(json_cache_path, "w", encoding="utf-8") as file:
         json.dump(json_data, file)
 
     return True
-
 
 # %% ../nbs/client/client.ipynb 15
 def prepare_fetch(
@@ -123,8 +116,13 @@ def prepare_fetch(
 
     return headers, url, params, body
 
-
 # %% ../nbs/client/client.ipynb 16
+def _generate_cache_name(url):
+    uparse = urlparse(url)
+
+    return f"./CACHE/{''.join([uparse.netloc.replace('.', '_'), uparse.path.replace('.', '_')])}.json"
+
+# %% ../nbs/client/client.ipynb 18
 async def get_data(
     url: str,
     method: str,
@@ -139,6 +137,8 @@ async def get_data(
     client: httpx.AsyncClient = None,
 ) -> ResponseGetData:
     """wrapper for httpx Request library, always use with jiralibrary class"""
+
+    json_cache_path = json_cache_path or _generate_cache_name(url)
 
     if not is_ignore_cache and json_cache_path:
         json_data = get_cache(json_cache_path=json_cache_path, debug_api=debug_api)
@@ -189,11 +189,11 @@ async def get_data(
 
     return rgd
 
-
-# %% ../nbs/client/client.ipynb 19
+# %% ../nbs/client/client.ipynb 21
 async def looper(
     url,
-    auth: ja.JiraAuth,
+    client: httpx.AsyncClient,
+    auth: Auth,
     arr_fn,
     params: dict = None,
     offset=0,
@@ -201,26 +201,38 @@ async def looper(
     debug_loop: bool = False,
     debug_api: bool = False,
     method="GET",
-    **kwargs,
+    is_ignore_cache: bool = False,
+    json_cache_path: str = None,
+    **kwargs
 ):
+    json_cache_path = json_cache_path or _generate_cache_name(url)
+
+    if not is_ignore_cache and json_cache_path:
+        json_data = get_cache(json_cache_path=json_cache_path, debug_api=debug_api)
+
+        if json_data:
+            return ResponseGetData._from_cache(data=json_data, auth=auth)
+
     final_array = []
     keep_looping = True
 
     while keep_looping:
-        if debug_loop:
-            print({"startAt": offset, "maxResults": limit})
-
         new_params = params.copy() if params else {}
 
         new_params = {**new_params, "startAt": offset, "maxResults": limit}
 
+        if debug_loop:
+            print({"startAt": offset, "maxResults": limit, **new_params})
+
         res = await get_data(
+            is_ignore_cache=True,
             auth=auth,
             url=url,
             method=method,
             params=new_params,
             debug_api=debug_api,
-            **kwargs,
+            client=client,
+            **kwargs
         )
 
         new_array = arr_fn(res)
@@ -232,5 +244,8 @@ async def looper(
         offset += limit
 
     res.response = final_array
+
+    if res.is_success:
+        update_cache(json_cache_path=json_cache_path, json_data=res.response)
 
     return res

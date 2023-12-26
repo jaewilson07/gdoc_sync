@@ -3,16 +3,15 @@
 # %% ../../nbs/asana/02_task.ipynb 2
 from __future__ import annotations
 
-from dotenv import load_dotenv
-import os
-import json
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
+
 import datetime as dt
-from dateutil.parser import parse as dtu_parse
+import os
+
 from mdutils.mdutils import MdUtils
 
-from nbdev.showdoc import patch_to, show_doc
+from nbdev.showdoc import patch_to
 
 import gdoc_sync.utils as ut
 import gdoc_sync.client as gd
@@ -21,8 +20,7 @@ import gdoc_sync.asana.user as au
 import gdoc_sync.asana.project as ap
 
 # %% auto 0
-__all__ = ["AsanaSection", "AsanaMembership", "AsanaTask", "AsanaStory"]
-
+__all__ = ['AsanaSection', 'AsanaMembership', 'AsanaStory', 'AsanaTask']
 
 # %% ../../nbs/asana/02_task.ipynb 4
 @dataclass
@@ -69,6 +67,39 @@ class AsanaMembership:
 
 
 @dataclass
+class AsanaStory:
+    id: str
+    created_at: dt.DateTime
+    created_by: au.AsanaUser
+    text: str
+    type: str
+    resource_subtype: str
+
+    auth: aa.AsanaAuth = field(repr=False)
+
+    @classmethod
+    def _from_json(cls, data: dict, auth: aa.AsanaAuth) -> AsanaStory:
+        created_by = (
+            au.AsanaUser._from_json(data["created_by"], auth=auth)
+            if data.get("created_by")
+            else None
+        )
+
+        return cls(
+            id=data.get("gid"),
+            created_at=ut.convert_str_to_date(data.get("created_at")),
+            created_by=created_by,
+            text=data.get("text"),
+            type=data.get("type"),
+            resource_subtype=data.get("resource_subtype"),
+            auth=auth,
+        )
+
+    def to_text(self):
+        return f"{self.created_at.date()} - {self.created_by.name} - {self.text}"
+
+# %% ../../nbs/asana/02_task.ipynb 6
+@dataclass
 class AsanaTask:
     id: str
     name: str
@@ -81,10 +112,10 @@ class AsanaTask:
 
     is_completed: bool = None
 
-    created_at: dt.DateTime = None
-    completed_on: dt.DateTime = None
-    due_on: dt.DateTime = None
-    modified_at: dt.DateTime = None
+    created_at: dt.datetime = None
+    completed_on: dt.datetime = None
+    due_on: dt.datetime = None
+    modified_at: dt.datetime = None
 
     memberships: List[dict] = None
 
@@ -92,13 +123,13 @@ class AsanaTask:
 
     parent: Optional[dict] = None
     permalink_url: str = None
-    projects: List[AsanaProject] = None
+    projects: List[ap.AsanaProject] = None
     stories: List[AsanaStory] = None
 
     tags: List[dict] = None
 
     @classmethod
-    def _from_json(cls, obj: dict, auth: AsanaAuth) -> AsanaTask:
+    def _from_json(cls, obj: dict, auth: aa.AsanaAuth) -> AsanaTask:
         assignee = (
             au.AsanaUser._from_json(obj.get("assignee"), auth=auth)
             if obj.get("assignee")
@@ -122,10 +153,10 @@ class AsanaTask:
             assignee=assignee,
             is_completed=obj.get("completed"),
             assignee_status=obj.get("assignee_status"),
-            completed_on=ut.get_date(obj.get("completed_at")),
-            created_at=ut.get_date(obj.get("created_at")),
-            due_on=ut.get_date(obj.get("due_on")),
-            modified_at=ut.get_date(obj.get("modified_at")),
+            completed_on=ut.convert_str_to_date(obj.get("completed_at")),
+            created_at=ut.convert_str_to_date(obj.get("created_at")),
+            due_on=ut.convert_str_to_date(obj.get("due_on")),
+            modified_at=ut.convert_str_to_date(obj.get("modified_at")),
             memberships=memberships,
             notes=obj.get("notes"),
             parent=obj.get("parent"),
@@ -134,33 +165,7 @@ class AsanaTask:
             projects=projects,
         )
 
-
-# %% ../../nbs/asana/02_task.ipynb 5
-@patch_to(ap.AsanaProject)
-async def get_tasks(
-    self: ap.AsanaProject, debug_api: bool = False, return_raw: bool = False
-):
-    import gdoc_sync.asana.task as at
-
-    auth = self.auth
-    params = {"project": self.id}
-
-    url = f"{auth.base_url}/tasks"
-
-    res = await gd.get_data(
-        auth=auth, method="GET", url=url, debug_api=debug_api, params=params
-    )
-
-    if return_raw:
-        return res
-
-    return [
-        at.AsanaTask._from_json(task_obj, auth=auth)
-        for task_obj in res.response["data"]
-    ]
-
-
-# %% ../../nbs/asana/02_task.ipynb 7
+# %% ../../nbs/asana/02_task.ipynb 8
 @patch_to(AsanaTask, cls_method=True)
 async def get_by_id(
     cls, auth, task_id, debug_api: bool = False, return_raw: bool = False
@@ -179,42 +184,7 @@ async def get_by_id(
 
     return cls._from_json(res.response["data"], auth=auth)
 
-
-# %% ../../nbs/asana/02_task.ipynb 9
-@dataclass
-class AsanaStory:
-    id: str
-    created_at: dt.DateTime
-    created_by: au.AsanaUser
-    text: str
-    type: str
-    resource_subtype: str
-
-    auth: AsanaAuth = field(repr=False)
-
-    @classmethod
-    def _from_json(cls, data: dict, auth: AsanaAuth) -> AsanaStory:
-        created_by = (
-            au.AsanaUser._from_json(data["created_by"], auth=auth)
-            if data.get("created_by")
-            else None
-        )
-
-        return cls(
-            id=data.get("gid"),
-            created_at=ut.get_date(data.get("created_at")),
-            created_by=created_by,
-            text=data.get("text"),
-            type=data.get("type"),
-            resource_subtype=data.get("resource_subtype"),
-            auth=auth,
-        )
-
-    def to_text(self):
-        return f"{self.created_at.date()} - {self.created_by.name} - {self.text}"
-
-
-# %% ../../nbs/asana/02_task.ipynb 10
+# %% ../../nbs/asana/02_task.ipynb 11
 @patch_to(AsanaTask)
 async def get_stories(
     self,
@@ -248,42 +218,62 @@ async def get_stories(
 
     return self.stories
 
+# %% ../../nbs/asana/02_task.ipynb 14
+def handle_render_user(mdFile, key, value):
+    mdFile.new_line(f"{key} - {value.name}")
 
-# %% ../../nbs/asana/02_task.ipynb 13
+
+def handle_render_datetime(mdFile, key, value):
+    mdFile.new_line(f"{key} - {value.date()}")
+
+
+render_factory_values = {
+    "AsanaUser": handle_render_user,
+    "datetime": handle_render_datetime,
+}
+
+
+def handle_render_membership(mdFile, key, value):
+    mdFile.new_header(level=1, title=key)
+    [mdFile.new_line(asana_class.to_text()) for asana_class in value]
+
+
+def handle_render_stories(mdFile, key, value):
+    mdFile.new_header(level=1, title=key)
+    [
+        mdFile.new_line(asana_class.to_text())
+        for asana_class in value
+        if "comment" in asana_class.resource_subtype
+    ]
+
+
+def handle_render_default(mdFile, key, value):
+    mdFile.new_line(f"{key} - {value}")
+
+
+render_factory_keys = {
+    "memberships": handle_render_membership,
+    "stories": handle_render_stories,
+    "default": handle_render_default,
+}
+
+
+def render_field(key: str, value: str, mdFile):
+    if key in ["name", "projects"] or not value:
+        return
+
+    render_fn = (
+        render_factory_values.get(value.__class__.__name__)
+        or render_factory_keys.get(key)
+        or render_factory_keys.get("default")
+    )
+
+    render_fn(mdFile=mdFile, key=key, value=value)
+
+
 @patch_to(AsanaTask)
 def to_md(self, output_folder="markdown", output_file=None):
-    if not os.path.exists(output_folder):
-        os.mkdir(output_folder)
-
-    def treat_field(key, value, mdFile):
-        if isinstance(value, au.AsanaUser):
-            mdFile.new_line(f"{key} - {value.name}")
-            return
-
-        if isinstance(value, dt.datetime):
-            mdFile.new_line(f"{key} - {value.date()}")
-            return
-
-        if key == "memberships":
-            mdFile.new_header(level=1, title=key)
-            [mdFile.new_line(asana_class.to_text()) for asana_class in value]
-
-            return
-
-        if key == "stories":
-            mdFile.new_header(level=1, title=key)
-            [
-                mdFile.new_line(asana_class.to_text())
-                for asana_class in value
-                if "comment" in asana_class.resource_subtype
-            ]
-
-            return
-
-        if key in ["name", "projects"] or not value:
-            return
-
-        return mdFile.new_line(f"{key} - {value}")
+    ut.upsert_folder(output_folder)
 
     mdFile = MdUtils(
         file_name=f"{output_folder}/{output_file or self.id}",
@@ -291,7 +281,7 @@ def to_md(self, output_folder="markdown", output_file=None):
     )
 
     [
-        treat_field(key, getattr(self, key), mdFile)
+        render_field(key, getattr(self, key), mdFile)
         for key in self.__dict__.keys()
         if key not in ["auth", "workspace_id"]
     ]
@@ -299,3 +289,26 @@ def to_md(self, output_folder="markdown", output_file=None):
 
     return f"done exporting {mdFile.file_name}"
     # mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
+
+# %% ../../nbs/asana/02_task.ipynb 18
+@patch_to(ap.AsanaProject)
+async def get_tasks(
+    self: ap.AsanaProject, debug_api: bool = False, return_raw: bool = False
+):
+    import gdoc_sync.asana.task as at
+
+    auth = self.auth
+    params = {"project": self.id}
+
+    url = f"{auth.base_url}/tasks"
+
+    res = await gd.get_data(
+        auth=auth, method="GET", url=url, debug_api=debug_api, params=params
+    )
+
+    if return_raw:
+        return res
+
+    return [
+        AsanaTask._from_json(task_obj, auth=auth) for task_obj in res.response["data"]
+    ]
