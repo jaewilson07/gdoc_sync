@@ -4,22 +4,26 @@
 from __future__ import annotations
 
 import os
-
-from abc import ABC, abstractmethod, abstractproperty
+from typing import Any, Union
 from dataclasses import dataclass, field
-from pprint import pprint
+from abc import abstractmethod, ABC, abstractproperty
+
 import httpx
+import json
+
+from pprint import pprint
 
 from dateutil.parser import parse as dtu_parse
 import re
 
 # %% auto 0
-__all__ = ['Auth', 'ResponseGetData', 'get_data', 'looper', 'get_date', 'upsert_folder', 'convert_to_snake', 'clean_url_name',
-           'generate_file_name']
+__all__ = ["Auth", "ResponseGetData", "get_cache", "update_cache", "get_data", "looper"]
 
-# %% ../nbs/client/client.ipynb 4
+
+# %% ../nbs/client/client.ipynb 5
+@dataclass
 class Auth(ABC):
-    """Abstract base class handles authentication.."""
+    """Base class for authentication"""
 
     @property
     @abstractmethod
@@ -31,70 +35,162 @@ class Auth(ABC):
     def auth_header(self, val: str):
         ...
 
-    def generate_auth_header(self):
-        ...
+    @abstractmethod
+    def generate_auth_header(self) -> dict:
+        """Get the headers for the authentication"""
+        pass
 
-# %% ../nbs/client/client.ipynb 5
+
+# %% ../nbs/client/client.ipynb 6
 @dataclass
 class ResponseGetData:
     """class for returning data from any route"""
 
+    is_from_cache: bool
+    is_success: bool
+
     status: int
-    response: str
-    auth: any = field(repr=False, default=None)
-    is_success: bool = False
+    response: Any
+    auth: Any = field(repr=False, default=None)
 
     def __post_init__(self):
         self.is_success = True if self.status >= 200 and self.status <= 399 else False
 
     @classmethod
-    def _from_httpx_response(cls, res: httpx.Response, auth=None):
-        rgd = cls(status=res.status_code, response=res.json(), auth=auth)
+    def _from_httpx(cls, res: httpx.Response, auth: Any = None):
+        return cls(
+            status=res.status_code,
+            response=res.json(),
+            is_success=res.is_success,
+            is_from_cache=False,
+            auth=auth,
+        )
 
-        return rgd
+    @classmethod
+    def _from_cache(cls, data: dict = None, auth: Any = None):
+        return cls(
+            status=200,
+            response=data,
+            is_success=True,
+            is_from_cache=True,
+            auth=auth,
+        )
 
-# %% ../nbs/client/client.ipynb 8
-async def get_data(
-    url: str,
-    method: str,
-    auth: any,
-    headers: dict = None,
-    params: dict = None,
+
+# %% ../nbs/client/client.ipynb 11
+def get_cache(
+    json_cache_path: str,
     debug_api: bool = False,
-    body=None,
-    session: httpx.AsyncClient = None,
-) -> ResponseGetData:
-    """wrapper for httpx Request library, always use with jiralibrary class"""
+) -> Union[dict, None]:
+    """function for getting cached data from json file"""
 
-    is_close_session = False
-    method = method.lower()
+    json_data = None
+    try:
+        with open(json_cache_path, "r", encoding="utf-8") as file:
+            json_data = json.load(file)
 
-    if not headers:
-        headers = {"Accept": "application/json"}
+    except (FileNotFoundError, json.JSONDecodeError) as e:
+        json_data = None
+
+    if json_data:
+        if debug_api:
+            print(f"🚀 Using cached data in {json_cache_path}")
+
+    return json_data
+
+
+def update_cache(json_cache_path: str, json_data: dict):
+    with open(json_cache_path, "w", encoding="utf-8") as file:
+        json.dump(json_data, file)
+
+    return True
+
+
+# %% ../nbs/client/client.ipynb 15
+def prepare_fetch(
+    url: str,
+    params: dict = None,
+    auth: Auth = None,
+    headers: dict = None,
+    body: dict = None,
+):
+    """base function to prepare a fetch operation"""
+
+    headers = headers or {"Accept": "application/json"}
 
     if auth:
         headers = {**headers, **auth.generate_auth_header()}
 
-    if not session:
-        session = httpx.AsyncClient()
-        is_close_session = True
+    return headers, url, params, body
+
+
+# %% ../nbs/client/client.ipynb 16
+async def get_data(
+    url: str,
+    method: str,
+    json_cache_path: str = None,
+    is_ignore_cache: bool = False,
+    headers: dict = None,
+    params: dict = None,
+    body=None,
+    auth: Auth = None,
+    parent_class: str = None,
+    debug_api: bool = False,
+    client: httpx.AsyncClient = None,
+) -> ResponseGetData:
+    """wrapper for httpx Request library, always use with jiralibrary class"""
+
+    if not is_ignore_cache and json_cache_path:
+        json_data = get_cache(json_cache_path=json_cache_path, debug_api=debug_api)
+
+        if json_data:
+            return ResponseGetData._from_cache(data=json_data, auth=auth)
+
+    is_close_session = False if client else True
+    client = client or httpx.AsyncClient()
+
+    headers, url, params, body = prepare_fetch(
+        url=url,
+        params=params,
+        auth=auth,
+        headers=headers,
+        body=body,
+    )
 
     if debug_api:
-        pprint({"url": url, "headers": headers, "params": params, "body": body})
+        pprint(
+            {
+                "headers": headers,
+                "url": url,
+                "params": params,
+                "body": body,
+                "cache_file_path": json_cache_path,
+                "debug_api": debug_api,
+                "parent_class": parent_class,
+            }
+        )
 
-    if method == "get":
-        res = await getattr(session, method)(url=url, headers=headers, params=params)
+    if method.upper() == "GET":
+        res = await client.get(
+            url=url, headers=headers, params=params, follow_redirects=True
+        )
     else:
-        res = await getattr(session, method)(
+        res = await getattr(client, method)(
             url=url, headers=headers, params=params, data=body
         )
 
     if is_close_session:
-        await session.aclose()
+        await client.aclose()
 
-    return ResponseGetData._from_httpx_response(res)
+    rgd = ResponseGetData._from_httpx(res, auth=auth)
 
-# %% ../nbs/client/client.ipynb 9
+    if rgd.is_success:
+        update_cache(json_cache_path=json_cache_path, json_data=rgd.response)
+
+    return rgd
+
+
+# %% ../nbs/client/client.ipynb 19
 async def looper(
     url,
     auth: ja.JiraAuth,
@@ -105,7 +201,7 @@ async def looper(
     debug_loop: bool = False,
     debug_api: bool = False,
     method="GET",
-    **kwargs
+    **kwargs,
 ):
     final_array = []
     keep_looping = True
@@ -124,7 +220,7 @@ async def looper(
             method=method,
             params=new_params,
             debug_api=debug_api,
-            **kwargs
+            **kwargs,
         )
 
         new_array = arr_fn(res)
@@ -138,29 +234,3 @@ async def looper(
     res.response = final_array
 
     return res
-
-# %% ../nbs/client/client.ipynb 11
-def get_date(datefield) -> datetime.datetime:
-    """converts string date to datetime object"""
-    return dtu_parse(datefield) if datefield else None
-
-# %% ../nbs/client/client.ipynb 12
-def upsert_folder(folder_path):
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-
-
-def convert_to_snake(text_str):
-    """converts 'snake_case_str' to 'snakeCaseStr'"""
-
-    return text_str.replace(" ", "_").lower()
-
-
-def clean_url_name(path_name):
-    valid_chars = r"[^a-zA-Z0-9_]"
-
-    return re.sub(valid_chars, "", path_name)
-
-
-def generate_file_name(raw_name):
-    return clean_url_name(convert_to_snake(raw_name))

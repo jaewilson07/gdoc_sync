@@ -17,7 +17,7 @@ from nbdev.showdoc import patch_to
 import gdoc_sync.client as gd
 
 # %% auto 0
-__all__ = ['AsanaAuth']
+__all__ = ["AsanaAuth"]
 
 # %% ../../nbs/asana/00_auth.ipynb 4
 from dataclassabc import dataclassabc

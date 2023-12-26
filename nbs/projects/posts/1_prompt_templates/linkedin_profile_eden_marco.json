@@ -1,0 +1,238 @@
+{
+    "public_identifier": "eden-marco",
+    "profile_pic_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/person/eden-marco/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7cc4fce4ad1ef7d8ab1ffc76c9e9ed89e6de6ae593d315b6e7297145457c7174",
+    "background_cover_image_url": null,
+    "first_name": "Eden",
+    "last_name": "Marco",
+    "full_name": "Eden Marco",
+    "follower_count": null,
+    "occupation": "Customer Engineer at Google",
+    "headline": "Customer Engineer @ Google Cloud | Best-selling Udemy Instructor",
+    "summary": "Backend developer, Udemy.com best seller instructor\n",
+    "country": "IL",
+    "country_full_name": "Israel",
+    "city": null,
+    "state": null,
+    "experiences": [
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 6,
+                "year": 2022
+            },
+            "ends_at": null,
+            "company": "Google",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/google/",
+            "title": "Customer Engineer",
+            "description": null,
+            "location": "Tel Aviv, Israel",
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/google/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=fb2eccf9b0aa9a7e07ec46ba49b42a19fab9019930c8a531fdf3559dc3725b65"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 4,
+                "year": 2020
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 6,
+                "year": 2022
+            },
+            "company": "Orca Security",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/orca-security/",
+            "title": "Software Engineer",
+            "description": null,
+            "location": "Tel Aviv, Israel",
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/orca-security/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=6357c586ed3c95e548a24adcaedcf61ad554a7d368757d61cc460bd0defbeaba"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 12,
+                "year": 2019
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 4,
+                "year": 2020
+            },
+            "company": "Wizer",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/get-wizer/",
+            "title": "Software Engineer",
+            "description": null,
+            "location": null,
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/get-wizer/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=cff7ff221b6aa0f44ebd082fb1cf2faedb1ff14e688499793bb53cc45cd52c25"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 7,
+                "year": 2019
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 12,
+                "year": 2019
+            },
+            "company": "Deep Instinct",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/deep-instinct/",
+            "title": "Software Engineer",
+            "description": null,
+            "location": "Tel Aviv Area, Israel",
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/deep-instinct/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=64da0b086d86a22a14f5e50827d7c5789bc299904c3bb8fe84800b4fc72f8dc7"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 10,
+                "year": 2018
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 7,
+                "year": 2019
+            },
+            "company": "Reichman University (IDC Herzliya)",
+            "company_linkedin_profile_url": "https://www.linkedin.com/school/reichman-university/",
+            "title": "Computer Science Teaching Assistant (External Lecturer)",
+            "description": "* Functional Programming (Including international school)\n* Introduction to Computer Science",
+            "location": "Herzliya Area, Israel",
+            "logo_url": "https://media.licdn.com/dms/image/C4D0BAQGg9wJflAQnjw/company-logo_400_400/0/1632054179547?e=1693440000&v=beta&t=G7CJDdyVEfqduYeG92qFxxOtH_bnn74RVVENC7qoaX0"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 2,
+                "year": 2017
+            },
+            "ends_at": null,
+            "company": "Udemy",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/udemy/",
+            "title": "Independent Udemy Instructor",
+            "description": "Production and publication of two best-selling courses on the Udemy platform, with a total of 12k+ enrolled students, 1100+ ratings and a solid 4.7 \u2605 rating.",
+            "location": null,
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/udemy/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=6a25a871b3746f450c82da3b44443a223e84d6fb1b455aedc5c16fdf3bec5e30"
+        },
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 7,
+                "year": 2010
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 8,
+                "year": 2014
+            },
+            "company": "Israel Defense Forces",
+            "company_linkedin_profile_url": "https://www.linkedin.com/company/israeldefenseforces/",
+            "title": "Captain",
+            "description": null,
+            "location": null,
+            "logo_url": "https://s3.us-west-000.backblazeb2.com/proxycurl/company/israeldefenseforces/profile?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=0004d7f56a0400b0000000001%2F20230601%2Fus-west-000%2Fs3%2Faws4_request&X-Amz-Date=20230601T061559Z&X-Amz-Expires=1800&X-Amz-SignedHeaders=host&X-Amz-Signature=95317c0c8666844c3fe110228d6bb825525b9598fa657921dcf9224fedaced7c"
+        }
+    ],
+    "education": [
+        {
+            "starts_at": {
+                "day": 1,
+                "month": 1,
+                "year": 2015
+            },
+            "ends_at": {
+                "day": 1,
+                "month": 1,
+                "year": 2019
+            },
+            "field_of_study": "Computer Science",
+            "degree_name": "Bachelor\u2019s Degree",
+            "school": "Technion - Israel Institute of Technology",
+            "school_linkedin_profile_url": null,
+            "description": null,
+            "logo_url": "https://media.licdn.com/dms/image/C4D0BAQG12formuFdJg/company-logo_400_400/0/1559649766994?e=1693440000&v=beta&t=Lf2a-PwzJBKSUaElXSE3FQhg_ezbp-Yx1rxuXEHToiU",
+            "grade": null,
+            "activities_and_societies": null
+        }
+    ],
+    "languages": [],
+    "accomplishment_organisations": [],
+    "accomplishment_publications": [],
+    "accomplishment_honors_awards": [],
+    "accomplishment_patents": [],
+    "accomplishment_courses": [],
+    "accomplishment_projects": [],
+    "accomplishment_test_scores": [],
+    "volunteer_work": [],
+    "certifications": [],
+    "connections": null,
+    "people_also_viewed": [],
+    "recommendations": [],
+    "activities": [],
+    "similarly_named_profiles": [
+        {
+            "name": "Blumeden Marco Pasquali",
+            "link": "https://it.linkedin.com/in/blumeden-marco-pasquali-44603287",
+            "summary": "--",
+            "location": "Italy"
+        },
+        {
+            "name": "Eden Marco",
+            "link": "https://www.linkedin.com/in/edenmarco",
+            "summary": "Incoming Deloitte Strategy Summer Scholar",
+            "location": "Chapel Hill, NC"
+        },
+        {
+            "name": "Eden Marco",
+            "link": "https://www.linkedin.com/in/eden-marco-8299301ba",
+            "summary": "Student at San Francisco State University",
+            "location": "San Francisco Bay Area"
+        },
+        {
+            "name": "Eden Marco",
+            "link": "https://www.linkedin.com/in/eden-marco-875211201",
+            "summary": "Incoming First Year Optometry Student at Massachusetts College of Pharmacy & Health Sciences",
+            "location": "Greater Boston"
+        }
+    ],
+    "articles": [],
+    "groups": [],
+    "phone_numbers": [],
+    "social_networking_services": [],
+    "skills": [
+        "Python",
+        "Cloud Computing",
+        "Django",
+        "AWS",
+        "Elasticsearch",
+        "PostgreSQL",
+        "SQL",
+        "NoSQL",
+        "Bash",
+        "Linux",
+        "Firebase",
+        "Cloud Firestore",
+        "MongoDB",
+        "Jenkins",
+        "docker",
+        "Neo4j",
+        "Haskell",
+        "Functional Programming",
+        "Graph Databases"
+    ],
+    "inferred_salary": {
+        "min": null,
+        "max": null
+    },
+    "gender": null,
+    "birth_date": null,
+    "industry": null,
+    "extra": {
+        "github_profile_id": null,
+        "twitter_profile_id": null,
+        "facebook_profile_id": null
+    },
+    "interests": [],
+    "personal_emails": [],
+    "personal_numbers": []
+}

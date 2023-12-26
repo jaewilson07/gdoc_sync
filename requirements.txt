@@ -1,0 +1,14 @@
+black
+black[jupyter]
+httpx
+
+jupyterlab
+nbdev
+jupyterlab-quarto
+
+python-dotenv
+
+langchain
+openai
+
+wikipedia

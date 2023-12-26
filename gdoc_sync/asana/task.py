@@ -21,7 +21,8 @@ import gdoc_sync.asana.user as au
 import gdoc_sync.asana.project as ap
 
 # %% auto 0
-__all__ = ['AsanaSection', 'AsanaMembership', 'AsanaTask', 'AsanaStory']
+__all__ = ["AsanaSection", "AsanaMembership", "AsanaTask", "AsanaStory"]
+
 
 # %% ../../nbs/asana/02_task.ipynb 4
 @dataclass
@@ -133,6 +134,7 @@ class AsanaTask:
             projects=projects,
         )
 
+
 # %% ../../nbs/asana/02_task.ipynb 5
 @patch_to(ap.AsanaProject)
 async def get_tasks(
@@ -157,6 +159,7 @@ async def get_tasks(
         for task_obj in res.response["data"]
     ]
 
+
 # %% ../../nbs/asana/02_task.ipynb 7
 @patch_to(AsanaTask, cls_method=True)
 async def get_by_id(
@@ -175,6 +178,7 @@ async def get_by_id(
         return res
 
     return cls._from_json(res.response["data"], auth=auth)
+
 
 # %% ../../nbs/asana/02_task.ipynb 9
 @dataclass
@@ -209,6 +213,7 @@ class AsanaStory:
     def to_text(self):
         return f"{self.created_at.date()} - {self.created_by.name} - {self.text}"
 
+
 # %% ../../nbs/asana/02_task.ipynb 10
 @patch_to(AsanaTask)
 async def get_stories(
@@ -242,6 +247,7 @@ async def get_stories(
         ]
 
     return self.stories
+
 
 # %% ../../nbs/asana/02_task.ipynb 13
 @patch_to(AsanaTask)
