@@ -32,6 +32,7 @@ async def get_linked_in_profile_route(
     is_ignore_cache: bool = False,
     parent_class: str = None,
     debug_api: bool = False,
+    debug_prn: bool = False,
 ):
     """gets a linkedin profiel via the proxycurl API"""
 
@@ -68,6 +69,7 @@ async def get_linked_in_profile_route(
         is_ignore_cache=is_ignore_cache,
         parent_class=parent_class,
         debug_api=debug_api,
+        debug_prn=debug_prn,
     )
 
     return res
@@ -80,6 +82,7 @@ async def scrape_linkedin_profile(
     json_cache_path: str = None,
     is_ignore_cache: bool = False,
     debug_api: bool = False,
+    debug_prn: bool = False,
 ):
     """scrape information from LinkedIn profiles via proxy curl"""
 
@@ -90,6 +93,7 @@ async def scrape_linkedin_profile(
         json_cache_path=json_cache_path,
         is_ignore_cache=is_ignore_cache,
         debug_api=debug_api,
+        debug_prn=debug_prn,
     )
 
     profile_obj = res.response

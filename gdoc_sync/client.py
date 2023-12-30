@@ -66,14 +66,11 @@ class ResponseGetData:
         )
 
 # %% ../nbs/client/client.ipynb 11
-def get_cache(
-    json_cache_path: str,
-    debug_api: bool = False,
-) -> Union[dict, None]:
+def get_cache(json_cache_path: str, debug_prn: bool = False) -> Union[dict, None]:
     """function for getting cached data from json file"""
 
     json_data = None
-    ut.upsert_folder(json_cache_path)
+    ut.upsert_folder(folder_path=json_cache_path, debug_prn=debug_prn)
 
     try:
         with open(json_cache_path, "r", encoding="utf-8") as file:
@@ -85,7 +82,7 @@ def get_cache(
         json_data = None
 
     if json_data:
-        if debug_api:
+        if debug_prn:
             print(f"🚀 Using cached data in {json_cache_path}")
 
     return json_data
@@ -134,6 +131,7 @@ async def get_data(
     auth: Auth = None,
     parent_class: str = None,
     debug_api: bool = False,
+    debug_prn: bool = False,
     client: httpx.AsyncClient = None,
 ) -> ResponseGetData:
     """wrapper for httpx Request library, always use with jiralibrary class"""
@@ -141,7 +139,7 @@ async def get_data(
     json_cache_path = json_cache_path or _generate_cache_name(url)
 
     if not is_ignore_cache and json_cache_path:
-        json_data = get_cache(json_cache_path=json_cache_path, debug_api=debug_api)
+        json_data = get_cache(json_cache_path=json_cache_path, debug_prn=debug_prn)
 
         if json_data:
             return ResponseGetData._from_cache(data=json_data, auth=auth)
@@ -200,6 +198,7 @@ async def looper(
     limit=50,
     debug_loop: bool = False,
     debug_api: bool = False,
+    debug_prn: bool = False,
     method="GET",
     is_ignore_cache: bool = False,
     json_cache_path: str = None,
@@ -208,7 +207,7 @@ async def looper(
     json_cache_path = json_cache_path or _generate_cache_name(url)
 
     if not is_ignore_cache and json_cache_path:
-        json_data = get_cache(json_cache_path=json_cache_path, debug_api=debug_api)
+        json_data = get_cache(json_cache_path=json_cache_path, debug_prn=debug_prn)
 
         if json_data:
             return ResponseGetData._from_cache(data=json_data, auth=auth)
@@ -231,6 +230,7 @@ async def looper(
             method=method,
             params=new_params,
             debug_api=debug_api,
+            debug_prn=debug_prn,
             client=client,
             **kwargs
         )

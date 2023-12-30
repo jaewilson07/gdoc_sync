@@ -67,8 +67,11 @@ def update_env(env_path: str, key: str, value: str, debug_prn: bool = False) -> 
     return {key: os.getenv(key)}
 
 # %% ../nbs/client/utils.ipynb 7
-def upsert_folder(folder_path: str):
+def upsert_folder(folder_path: str, debug_prn: bool = False):
     folder_path = os.path.dirname(folder_path)
+
+    if debug_prn:
+        print({"upsert_folder": folder_path, "is_exist": os.path.exists(folder_path)})
 
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
