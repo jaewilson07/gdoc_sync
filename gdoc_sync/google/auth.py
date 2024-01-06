@@ -145,7 +145,7 @@ def get_creds_from_env(
 
     return ga_auth
 
-# %% ../../nbs/google/00_auth.ipynb 15
+# %% ../../nbs/google/00_auth.ipynb 16
 @patch_to(GoogleAuth, cls_method=True)
 def get_creds_from_file(
     cls: GoogleAuth,

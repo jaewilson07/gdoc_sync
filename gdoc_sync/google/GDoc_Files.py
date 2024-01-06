@@ -9,11 +9,9 @@ import os
 from dataclasses import dataclass, field
 from typing import List
 
-from gdoc_sync.utils import convert_str_to_date, convert_str_file_name
+from gdoc_sync.utils import convert_str_file_name
 import gdoc_sync.google.auth as ga
 import gdoc_sync.google.GDoc_File as gd
-import gdoc_sync.client as ut
-
 
 from nbdev.showdoc import patch_to
 

@@ -9,6 +9,12 @@ jupyterlab-quarto
 python-dotenv
 
 langchain
+torch 
+torchvision
+torchaudio
+transformers
 openai
+
+huggingface_hub
 
 wikipedia
