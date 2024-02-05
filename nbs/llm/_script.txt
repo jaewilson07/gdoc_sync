@@ -1,0 +1,2 @@
+jupyter nbconvert --to python App.ipynb
+streamlit run App.py
