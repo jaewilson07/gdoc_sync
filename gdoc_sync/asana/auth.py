@@ -10,7 +10,8 @@ from dataclasses import dataclass, field
 import gdoc_sync.client as gd
 
 # %% auto 0
-__all__ = ['AsanaAuth']
+__all__ = ["AsanaAuth"]
+
 
 # %% ../../nbs/asana/00_auth.ipynb 5
 @dataclass

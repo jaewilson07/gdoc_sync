@@ -19,6 +19,7 @@ import os
 # hypothetic_question_vectorstore = None
 # summary_vectorstore = None
 
+
 def initialize_retrievers(openai_api_key):
     # global typical_rag, parent_vectorstore, hypothetic_question_vectorstore, summary_vectorstore
 
@@ -27,7 +28,7 @@ def initialize_retrievers(openai_api_key):
     # NEO4J_URI= st.secrets["NEO4J_URI"]
     # NEO4J_USERNAME= st.secrets["NEO4J_USERNAME"]
     # NEO4J_PASSWORD= st.secrets["NEO4J_PASSWORD"]
-   
+
     # graph = Neo4jGraph(
     #     url=os.environ["NEO4J_URI"],
     #     username=os.environ["NEO4J_USERNAME"],
@@ -35,7 +36,8 @@ def initialize_retrievers(openai_api_key):
 
     # Initialize typical_rag
     typical_rag = Neo4jVector.from_existing_index(
-        OpenAIEmbeddings(), index_name="typical_rag")
+        OpenAIEmbeddings(), index_name="typical_rag"
+    )
 
     # Initialize parent_vectorstore
     parent_query = """
@@ -73,5 +75,9 @@ def initialize_retrievers(openai_api_key):
         retrieval_query=summary_query,
     )
 
-    return typical_rag, parent_vectorstore, hypothetic_question_vectorstore, summary_vectorstore
-
+    return (
+        typical_rag,
+        parent_vectorstore,
+        hypothetic_question_vectorstore,
+        summary_vectorstore,
+    )

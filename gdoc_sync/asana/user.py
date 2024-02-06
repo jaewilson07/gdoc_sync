@@ -12,7 +12,8 @@ import gdoc_sync.asana.auth as aa
 import gdoc_sync.client as gd
 
 # %% auto 0
-__all__ = ['AsanaUser']
+__all__ = ["AsanaUser"]
+
 
 # %% ../../nbs/asana/01_user.ipynb 4
 @dataclass
@@ -32,6 +33,7 @@ class AsanaUser:
             resource_type=obj["resource_type"],
             auth=auth,
         )
+
 
 # %% ../../nbs/asana/01_user.ipynb 7
 @patch_to(AsanaUser, cls_method=True)

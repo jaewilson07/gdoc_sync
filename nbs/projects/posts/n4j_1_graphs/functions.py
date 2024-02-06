@@ -2,15 +2,18 @@
 def process_query(query):
     # Use GraphCypherQAChain to get a Cypher query and a natural language response
     result = cypher_chain(query)
-    intermediate_steps = result['intermediate_steps']
-    final_answer = result['result']
-    generated_cypher = intermediate_steps[0]['query']
+    intermediate_steps = result["intermediate_steps"]
+    final_answer = result["result"]
+    generated_cypher = intermediate_steps[0]["query"]
     nl_response = final_answer
-    
+
     # Fetch graph data using the Cypher query
-    nodes, edges = fetch_graph_data(direct_cypher_query=generated_cypher, intermediate_steps=intermediate_steps)
-    
+    nodes, edges = fetch_graph_data(
+        direct_cypher_query=generated_cypher, intermediate_steps=intermediate_steps
+    )
+
     return nl_response, visual, nodes, edges
+
 
 # Function to construct the Cypher query based on selected filters
 def construct_cypher_query(node_types, rel_types):
@@ -30,8 +33,9 @@ def construct_cypher_query(node_types, rel_types):
         query = f"MATCH {' OR '.join(node_clauses)} WHERE {rel_match} RETURN p, r, n"
     else:
         query = f"MATCH {' OR '.join(node_clauses)} RETURN p, r, n"
-    
+
     return query
+
 
 def process_graph_result(context):
     nodes = []
@@ -40,8 +44,8 @@ def process_graph_result(context):
 
     for record in context:  # Adjusted to access 'Full Context' from the result
         # Process nodes
-        p_name = record['p.name']
-        o_name = record['o.name']
+        p_name = record["p.name"]
+        o_name = record["o.name"]
 
         # Add nodes if they don't already exist
         if p_name not in node_names:
@@ -52,19 +56,22 @@ def process_graph_result(context):
             node_names.add(o_name)
 
         # Process edges
-        relationship_label = record['type(r)']
+        relationship_label = record["type(r)"]
         edges.append(Edge(source=p_name, target=o_name, label=relationship_label))
 
     return nodes, edges
 
+
 # Function to fetch data from Neo4j
-def fetch_graph_data(nodesType=None, relType=None, direct_cypher_query=None, intermediate_steps=None):
+def fetch_graph_data(
+    nodesType=None, relType=None, direct_cypher_query=None, intermediate_steps=None
+):
     # Use the direct Cypher query if provided
     if direct_cypher_query:
         cypher_query = direct_cypher_query
     else:
         # Construct the Cypher query based on selected filters
         cypher_query = construct_cypher_query(nodesType, relType)
-    context = intermediate_steps[0]['context']
+    context = intermediate_steps[0]["context"]
     nodes, edges = process_graph_result(context)
     return nodes, edges

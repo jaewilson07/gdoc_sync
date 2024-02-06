@@ -15,7 +15,8 @@ import gdoc_sync.asana.auth as aa
 import gdoc_sync.asana.user as au
 
 # %% auto 0
-__all__ = ['AsanaProject']
+__all__ = ["AsanaProject"]
+
 
 # %% ../../nbs/asana/01_project.ipynb 4
 @dataclass
@@ -78,6 +79,7 @@ class AsanaProject:
             completed_date=completed_date,
         )
 
+
 # %% ../../nbs/asana/01_project.ipynb 5
 @patch_to(AsanaProject, cls_method=True)
 async def get_projects(
@@ -102,6 +104,7 @@ async def get_projects(
         AsanaProject._from_json(proj_obj, auth=auth)
         for proj_obj in res.response["data"]
     ]
+
 
 # %% ../../nbs/asana/01_project.ipynb 8
 @patch_to(AsanaProject, cls_method=True)

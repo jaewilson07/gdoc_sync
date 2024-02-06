@@ -14,12 +14,19 @@ import os
 #     typical_rag,
 # )
 
+
 # Add typing for input
 class Question(BaseModel):
     question: str
 
 
-def initialize_chain(openai_api_key, typical_rag, parent_vectorstore, hypothetic_question_vectorstore, summary_vectorstore):
+def initialize_chain(
+    openai_api_key,
+    typical_rag,
+    parent_vectorstore,
+    hypothetic_question_vectorstore,
+    summary_vectorstore,
+):
     os.environ["OPENAI_API_KEY"] = openai_api_key
     template = """Answer the question based only on the following context:
     {context}
@@ -53,4 +60,3 @@ def initialize_chain(openai_api_key, typical_rag, parent_vectorstore, hypothetic
     chain = chain.with_types(input_type=Question)
 
     return chain
-

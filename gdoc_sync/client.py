@@ -18,7 +18,8 @@ from pprint import pprint
 import gdoc_sync.utils as ut
 
 # %% auto 0
-__all__ = ['Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'get_data', 'looper']
+__all__ = ["Auth", "ResponseGetData", "get_cache", "update_cache", "get_data", "looper"]
+
 
 # %% ../nbs/client/client.ipynb 5
 @dataclass
@@ -29,6 +30,7 @@ class Auth(ABC):
     def generate_auth_header(self) -> dict:
         """Get the headers for the authentication"""
         pass
+
 
 # %% ../nbs/client/client.ipynb 6
 @dataclass
@@ -65,6 +67,7 @@ class ResponseGetData:
             auth=auth,
         )
 
+
 # %% ../nbs/client/client.ipynb 11
 def get_cache(json_cache_path: str, debug_prn: bool = False) -> Union[dict, None]:
     """function for getting cached data from json file"""
@@ -96,6 +99,7 @@ def update_cache(json_cache_path: str, json_data: dict):
 
     return True
 
+
 # %% ../nbs/client/client.ipynb 15
 def prepare_fetch(
     url: str,
@@ -113,11 +117,13 @@ def prepare_fetch(
 
     return headers, url, params, body
 
+
 # %% ../nbs/client/client.ipynb 16
 def _generate_cache_name(url):
     uparse = urlparse(url)
 
     return f"./CACHE/{''.join([uparse.netloc.replace('.', '_'), uparse.path.replace('.', '_')])}.json"
+
 
 # %% ../nbs/client/client.ipynb 18
 async def get_data(
@@ -187,6 +193,7 @@ async def get_data(
 
     return rgd
 
+
 # %% ../nbs/client/client.ipynb 21
 async def looper(
     url,
@@ -202,7 +209,7 @@ async def looper(
     method="GET",
     is_ignore_cache: bool = False,
     json_cache_path: str = None,
-    **kwargs
+    **kwargs,
 ):
     json_cache_path = json_cache_path or _generate_cache_name(url)
 
@@ -232,7 +239,7 @@ async def looper(
             debug_api=debug_api,
             debug_prn=debug_prn,
             client=client,
-            **kwargs
+            **kwargs,
         )
 
         new_array = arr_fn(res)

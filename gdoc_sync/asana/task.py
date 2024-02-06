@@ -19,7 +19,8 @@ import gdoc_sync.asana.user as au
 import gdoc_sync.asana.project as ap
 
 # %% auto 0
-__all__ = ['AsanaSection', 'AsanaMembership', 'AsanaStory', 'AsanaTask']
+__all__ = ["AsanaSection", "AsanaMembership", "AsanaStory", "AsanaTask"]
+
 
 # %% ../../nbs/asana/02_task.ipynb 4
 @dataclass
@@ -97,6 +98,7 @@ class AsanaStory:
     def to_text(self):
         return f"{self.created_at.date()} - {self.created_by.name} - {self.text}"
 
+
 # %% ../../nbs/asana/02_task.ipynb 6
 @dataclass
 class AsanaTask:
@@ -164,6 +166,7 @@ class AsanaTask:
             projects=projects,
         )
 
+
 # %% ../../nbs/asana/02_task.ipynb 8
 @patch_to(AsanaTask, cls_method=True)
 async def get_by_id(
@@ -182,6 +185,7 @@ async def get_by_id(
         return res
 
     return cls._from_json(res.response["data"], auth=auth)
+
 
 # %% ../../nbs/asana/02_task.ipynb 11
 @patch_to(AsanaTask)
@@ -216,6 +220,7 @@ async def get_stories(
         ]
 
     return self.stories
+
 
 # %% ../../nbs/asana/02_task.ipynb 14
 def handle_render_user(mdFile, key, value):
@@ -288,6 +293,7 @@ def to_md(self, output_folder="markdown", output_file=None):
 
     return f"done exporting {mdFile.file_name}"
     # mdFile.new_table(columns=3, rows=6, text=list_of_strings, text_align='center')
+
 
 # %% ../../nbs/asana/02_task.ipynb 18
 @patch_to(ap.AsanaProject)
