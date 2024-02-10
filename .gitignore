@@ -1,6 +1,6 @@
 sample/
 markdown/
-scraper/SCRAPE/
+nbs/scraper/SCRAPE/*/*
 
 _docs/
 _proc/

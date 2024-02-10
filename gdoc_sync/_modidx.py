@@ -425,10 +425,184 @@ d = {
             ),
         },
         "gdoc_sync.llm.qna": {
+            "gdoc_sync.llm.qna.MemoryManager": (
+                "llm/llm_qna.html#memorymanager",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.MemoryManager.__init__": (
+                "llm/llm_qna.html#memorymanager.__init__",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.MemoryManager._generate_promptchain": (
+                "llm/llm_qna.html#memorymanager._generate_promptchain",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.MemoryManager._get_ai_streaming_response": (
+                "llm/llm_qna.html#memorymanager._get_ai_streaming_response",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.MemoryManager.add_user_message": (
+                "llm/llm_qna.html#memorymanager.add_user_message",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.QueueCallback": (
+                "llm/llm_qna.html#queuecallback",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.QueueCallback.__init__": (
+                "llm/llm_qna.html#queuecallback.__init__",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.QueueCallback.on_llm_end": (
+                "llm/llm_qna.html#queuecallback.on_llm_end",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.QueueCallback.on_llm_new_token": (
+                "llm/llm_qna.html#queuecallback.on_llm_new_token",
+                "gdoc_sync/llm/qna.py",
+            ),
+            "gdoc_sync.llm.qna.generate_promptchain_for_string": (
+                "llm/llm_qna.html#generate_promptchain_for_string",
+                "gdoc_sync/llm/qna.py",
+            ),
             "gdoc_sync.llm.qna.get_llm_response": (
                 "llm/llm_qna.html#get_llm_response",
                 "gdoc_sync/llm/qna.py",
-            )
+            ),
+            "gdoc_sync.llm.qna.handle_streaming_ref": (
+                "llm/llm_qna.html#handle_streaming_ref",
+                "gdoc_sync/llm/qna.py",
+            ),
+        },
+        "gdoc_sync.scraper.Scraper": {
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoBaseUrl": (
+                "scraper/scraper.html#scrapetask_nobaseurl",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoBaseUrl.__init__": (
+                "scraper/scraper.html#scrapetask_nobaseurl.__init__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoDriverProvided": (
+                "scraper/scraper.html#scrapetask_nodriverprovided",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoDriverProvided.__init__": (
+                "scraper/scraper.html#scrapetask_nodriverprovided.__init__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoScrapeCrawler": (
+                "scraper/scraper.html#scrapetask_noscrapecrawler",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.ScrapeTask_NoScrapeCrawler.__init__": (
+                "scraper/scraper.html#scrapetask_noscrapecrawler.__init__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Config": (
+                "scraper/scraper.html#scrape_config",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Config.__id__": (
+                "scraper/scraper.html#scrape_config.__id__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Config.get_search_tuple": (
+                "scraper/scraper.html#scrape_config.get_search_tuple",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Config.is_text_match_pattern": (
+                "scraper/scraper.html#scrape_config.is_text_match_pattern",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler": (
+                "scraper/scraper.html#scrape_crawler",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler.__init__": (
+                "scraper/scraper.html#scrape_crawler.__init__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler._add_url_to_visit": (
+                "scraper/scraper.html#scrape_crawler._add_url_to_visit",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler._add_url_to_visited": (
+                "scraper/scraper.html#scrape_crawler._add_url_to_visited",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler._quit": (
+                "scraper/scraper.html#scrape_crawler._quit",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Crawler.crawl_urls": (
+                "scraper/scraper.html#scrape_crawler.crawl_urls",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Factory": (
+                "scraper/scraper.html#scrape_factory",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Factory.get_task": (
+                "scraper/scraper.html#scrape_factory.get_task",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Factory_NoConfigMatch": (
+                "scraper/scraper.html#scrape_factory_noconfigmatch",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Factory_NoConfigMatch.__init__": (
+                "scraper/scraper.html#scrape_factory_noconfigmatch.__init__",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Task": (
+                "scraper/scraper.html#scrape_task",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Task._download_content": (
+                "scraper/scraper.html#scrape_task._download_content",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Task._from_factory": (
+                "scraper/scraper.html#scrape_task._from_factory",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Task._get_pagesource": (
+                "scraper/scraper.html#scrape_task._get_pagesource",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.Scrape_Task.scrape_page": (
+                "scraper/scraper.html#scrape_task.scrape_page",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.domokb_article_content_extractor_fn": (
+                "scraper/scraper.html#domokb_article_content_extractor_fn",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.domokb_knowledgebase_content_extractor_fn": (
+                "scraper/scraper.html#domokb_knowledgebase_content_extractor_fn",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.domokb_link_extractor_fn": (
+                "scraper/scraper.html#domokb_link_extractor_fn",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.domokb_topic_content_extractor_fn": (
+                "scraper/scraper.html#domokb_topic_content_extractor_fn",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.extract_links": (
+                "scraper/scraper.html#extract_links",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.generate_filename_from_url": (
+                "scraper/scraper.html#generate_filename_from_url",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
+            "gdoc_sync.scraper.Scraper.process_domo_kb_link": (
+                "scraper/scraper.html#process_domo_kb_link",
+                "gdoc_sync/scraper/Scraper.py",
+            ),
         },
         "gdoc_sync.scraper.driver": {
             "gdoc_sync.scraper.driver.DriverGenerator": (
