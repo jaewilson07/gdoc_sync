@@ -20,29 +20,14 @@ from gdoc_sync.utils import upsert_folder, convert_str_file_name
 import gdoc_sync.scraper.driver as dg
 
 # %% auto 0
-__all__ = [
-    "DomoKB_ScrapeConfig_Article",
-    "DomoKB_ScrapeConfig_Topic",
-    "DomoKB_ScrapeConfig_KnowledgeBase",
-    "DomoKB_ScrapeFactory",
-    "extract_links",
-    "generate_filename_from_url",
-    "Scrape_Config",
-    "ScrapeTask_NoDriverProvided",
-    "ScrapeTask_NoBaseUrl",
-    "ScrapeTask_NoScrapeCrawler",
-    "Scrape_Task",
-    "Scrape_Factory_NoConfigMatch",
-    "Scrape_Factory",
-    "domokb_article_content_extractor_fn",
-    "domokb_topic_content_extractor_fn",
-    "domokb_knowledgebase_content_extractor_fn",
-    "Scrape_Crawler",
-]
+__all__ = ['DomoKB_ScrapeConfig_Article', 'DomoKB_ScrapeConfig_Topic', 'DomoKB_ScrapeConfig_KnowledgeBase',
+           'DomoKB_ScrapeFactory', 'extract_links', 'generate_filename_from_url', 'Scrape_Config',
+           'ScrapeTask_NoDriverProvided', 'ScrapeTask_NoBaseUrl', 'ScrapeTask_NoScrapeCrawler', 'Scrape_Task',
+           'Scrape_Factory_NoConfigMatch', 'Scrape_Factory', 'domokb_article_content_extractor_fn',
+           'domokb_topic_content_extractor_fn', 'domokb_knowledgebase_content_extractor_fn', 'Scrape_Crawler']
 
 # %% ../../nbs/scraper/scraper.ipynb 3
 from nbdev.showdoc import patch_to
-
 
 # %% ../../nbs/scraper/scraper.ipynb 9
 def extract_links(
@@ -73,13 +58,12 @@ def extract_links(
         if custom_link_extractor_fn:
             url = custom_link_extractor_fn(url, base_url)
 
-        if url in links_ls:
+        if url in links_ls or not url:
             continue
 
         links_ls.append(url)
 
     return list(set(links_ls))
-
 
 # %% ../../nbs/scraper/scraper.ipynb 11
 def generate_filename_from_url(url, base_folder=None, file_name=None) -> str:
@@ -94,7 +78,6 @@ def generate_filename_from_url(url, base_folder=None, file_name=None) -> str:
         base_str = os.path.join(base_str, file_name)
 
     return base_str
-
 
 # %% ../../nbs/scraper/scraper.ipynb 14
 @dataclass
@@ -132,7 +115,6 @@ class Scrape_Config:
             print(match_pattern)
 
         return True
-
 
 # %% ../../nbs/scraper/scraper.ipynb 15
 class ScrapeTask_NoDriverProvided(Exception):
@@ -238,7 +220,6 @@ class Scrape_Task:
 
         return file_name
 
-
 # %% ../../nbs/scraper/scraper.ipynb 16
 @patch_to(Scrape_Task)
 def scrape_page(
@@ -324,7 +305,6 @@ def scrape_page(
             raise (e)
         return f"💀 failed to download {url} received errror{e}"
 
-
 # %% ../../nbs/scraper/scraper.ipynb 20
 class Scrape_Factory_NoConfigMatch(Exception):
     def __init__(self, text):
@@ -367,11 +347,13 @@ class Scrape_Factory:
             scrape_crawler=scrape_crawler,
         )
 
-
 # %% ../../nbs/scraper/scraper.ipynb 22
 def process_domo_kb_link(url, base_url):
     # remove query params
     url = remove_query_params_from_url(url)
+
+    if not url or not "/s/" not in url:
+        return None
 
     # only keep the first 6 pieces of the URL
     url = "/".join(url.split("/")[:6])
@@ -393,7 +375,6 @@ def domokb_link_extractor_fn(soup, base_url, debug_prn: bool = False):
         debug_prn=debug_prn,
     )
 
-
 # %% ../../nbs/scraper/scraper.ipynb 25
 def domokb_article_content_extractor_fn(soup) -> BeautifulSoup:
     return soup.find(class_=["article-column"])
@@ -407,7 +388,6 @@ DomoKB_ScrapeConfig_Article = Scrape_Config(
     search_element_text="slds-form-element",
 )
 
-
 # %% ../../nbs/scraper/scraper.ipynb 27
 def domokb_topic_content_extractor_fn(soup) -> BeautifulSoup:
     return soup.find(class_=["knowledge-base"])
@@ -420,7 +400,6 @@ DomoKB_ScrapeConfig_Topic = Scrape_Config(
     search_element_type=By.CSS_SELECTOR,
     search_element_text=f".{', .'.join(['section-list-item', 'article-list-item'] )}",
 )
-
 
 # %% ../../nbs/scraper/scraper.ipynb 29
 def domokb_knowledgebase_content_extractor_fn(soup) -> BeautifulSoup:
@@ -443,7 +422,6 @@ DomoKB_ScrapeFactory = Scrape_Factory(
         DomoKB_ScrapeConfig_KnowledgeBase,
     ]
 )
-
 
 # %% ../../nbs/scraper/scraper.ipynb 37
 @dataclass
@@ -508,7 +486,6 @@ class Scrape_Crawler:
 
         self.executor.shutdown(wait=True)
         return f"Done scraping {len(self.visited_urls)} urls"
-
 
 # %% ../../nbs/scraper/scraper.ipynb 39
 @patch_to(Scrape_Crawler)
