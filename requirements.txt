@@ -18,3 +18,4 @@ openai
 huggingface_hub
 
 wikipedia
+chardet
