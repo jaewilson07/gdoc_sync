@@ -1,12 +1,13 @@
-from pkg_resources import parse_version
 from configparser import ConfigParser
-import setuptools, shlex
+
+import setuptools
+from pkg_resources import parse_version
 
 assert parse_version(setuptools.__version__) >= parse_version("36.2")
 
 # note: all settings are in settings.ini; edit there, not here
 config = ConfigParser(delimiters=["="])
-config.read("settings.ini", encoding="utf-8")
+config.read("settings.ini")
 cfg = config["DEFAULT"]
 
 cfg_keys = "version description keywords author author_email".split()
@@ -45,9 +46,9 @@ statuses = [
 ]
 py_versions = "3.6 3.7 3.8 3.9 3.10".split()
 
-requirements = shlex.split(cfg.get("requirements", ""))
+requirements = cfg.get("requirements", "").split()
 if cfg.get("pip_requirements"):
-    requirements += shlex.split(cfg.get("pip_requirements", ""))
+    requirements += cfg.get("pip_requirements", "").split()
 min_python = cfg["min_python"]
 lic = licenses.get(cfg["license"].lower(), (cfg["license"], None))
 dev_requirements = (cfg.get("dev_requirements") or "").split()
@@ -72,7 +73,7 @@ setuptools.setup(
     extras_require={"dev": dev_requirements},
     dependency_links=cfg.get("dep_links", "").split(),
     python_requires=">=" + cfg["min_python"],
-    long_description=open("README.md", encoding="utf-8").read(),
+    long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     zip_safe=False,
     entry_points={

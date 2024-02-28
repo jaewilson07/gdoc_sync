@@ -1,0 +1,621 @@
+<div class="article-column zoom slds-text-longform selfServiceArticleLayout" data-aura-class="selfServiceArticleLayout" data-aura-rendered-by="78:142;a"><article class="summary" data-aura-rendered-by="79:142;a"><!--render facet: 3:177;a--><h2 class="article-head selfServiceArticleHeaderDetail" data-aura-class="selfServiceArticleHeaderDetail" data-aura-rendered-by="6:177;a">Connecting to SAP ECC Data in Domo</h2><h2 class="selfServiceArticleHeaderDetail" data-aura-class="selfServiceArticleHeaderDetail" data-aura-rendered-by="9:177;a"></h2><p class="article-summary" data-aura-rendered-by="10:177;a"></p><div class="meta" data-aura-rendered-by="13:177;a"><lightning-icon class="slds-icon-utility-clock timestamp-icon slds-button__icon slds-icon_container forceIcon" data-aura-class="forceIcon" data-aura-rendered-by="17:177;a" data-data-rendering-service-uid="85" icon-name="utility:clock"><span part="boundary" style="--sds-c-icon-color-background: var(--slds-c-icon-color-background, transparent)"><lightning-primitive-icon size="xx-small" variant="inverse"><svg aria-hidden="true" class="slds-icon slds-icon_xx-small" data-key="clock" focusable="false" part="icon" viewbox="0 0 520 520"><g><path d="M260 20C128 20 20 128 20 260s108 240 240 240 240-108 240-240S392 20 260 20zm0 420c-99 0-180-81-180-180S161 80 260 80s180 81 180 180-81 180-180 180zm34-178c-3-3-4-7-4-11v-96c0-8-7-15-15-15h-30c-8 0-15 7-15 15v121c0 4 2 8 4 11l74 74c6 6 15 6 21 0l21-21c6-6 6-15 0-21z"></path></g></svg></lightning-primitive-icon></span></lightning-icon><span class="date" data-aura-rendered-by="18:177;a"><span class="uiOutputDate" data-aura-class="uiOutputDate" data-aura-rendered-by="21:177;a">Jan 4, 2024</span></span><span class="dot" data-aura-rendered-by="22:177;a">•</span><span class="article-type" data-aura-rendered-by="24:177;a">Knowledge</span></div></article><article class="content" data-aura-rendered-by="80:142;a"><div class="full forcePageBlock forceRecordLayout" data-aura-class="forcePageBlock forceRecordLayout" data-aura-rendered-by="381:195;a"><div class="test-id__section slds-section slds-is-open full forcePageBlockSection forcePageBlockSectionView" data-aura-class="forcePageBlockSection forcePageBlockSectionView" data-aura-rendered-by="52:195;a"><h3 class="slds-section__title test-id__section-header-container" data-aura-rendered-by="54:195;a" data-target-reveals="sfdc:RecordField.Knowledge__kav.Title,sfdc:RecordField.Knowledge__kav.Article_Body__c"><button aria-controls="4:195;a" aria-expanded="true" class="slds-button test-id__section-header-button slds-section__title-action" data-aura-rendered-by="64:195;a" type="button"><!--render facet: 65:195;a--><lightning-icon class="slds-icon-utility-chevrondown test-id__section-header-icon section-icon slds-m-right_x-small slds-button__icon slds-icon_container forceIcon" data-aura-class="forceIcon" data-aura-rendered-by="60:195;a" data-data-rendering-service-uid="154" icon-name="utility:chevrondown"><span part="boundary" style="--sds-c-icon-color-background: var(--slds-c-icon-color-background, transparent)"><lightning-primitive-icon size="xx-small" variant="inverse"><svg aria-hidden="true" class="slds-icon slds-icon_xx-small" data-key="chevrondown" focusable="false" part="icon" viewbox="0 0 520 520"><g><path d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-162c6-6 16-6 22 0l22 22c5 6 5 15 0 21z"></path></g></svg></lightning-primitive-icon></span></lightning-icon><span class="test-id__section-header-title slds-truncate" data-aura-rendered-by="61:195;a">Information</span><!--render facet: 68:195;a--></button></h3><div aria-hidden="false" class="test-id__section-content slds-section__content section__content" data-aura-rendered-by="69:195;a" id="4:195;a" style="transition: none 0s ease 0s;"><div class="slds-form slds-form_stacked" data-aura-rendered-by="70:195;a"><div class="slds-grid slds-gutters_small full cols-1 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="24:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="11:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.Title"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="12:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="13:195;a"><span class="test-id__field-label" data-aura-rendered-by="14:195;a">Title</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="16:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="17:195;a"><span class="uiOutputText" data-aura-class="uiOutputText" data-aura-rendered-by="9:195;a">Connecting to SAP ECC Data in Domo</span></span><!--render facet: 19:195;a--><!--render facet: 20:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-1 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="48:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full long-text forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="35:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.Article_Body__c"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="36:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="37:195;a"><span class="test-id__field-label" data-aura-rendered-by="38:195;a">Article Body</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="40:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="41:195;a"><div class="slds-rich-text-editor__output uiOutputRichText forceOutputRichText selfServiceOutputRichTextWithSmartLinks" data-aura-class="uiOutputRichText forceOutputRichText selfServiceOutputRichTextWithSmartLinks" data-aura-rendered-by="32:195;a" dir="ltr"><h2 data-aura-rendered-by="33:195;a" id="h_66257ce2-20c5-40a2-89d5-6a912456bca3">Intro</h2>
+<p data-aura-rendered-by="33:195;a">SAP has many systems. This article addresses connecting to data from the SAP ECC (ERP Central Component) tool. This connector consists of several modules, including utilities for marketing and sales, field service, product design and development, production and inventory control, human resources, finance and accounting. SAP ERP collects and combines data from the separate modules to provide the company or organization with enterprise resource planning.</p>
+<table class="mt-responsive-table" data-aura-rendered-by="33:195;a"><tbody><tr><td class="mt-noheading" colspan="1" rowspan="1">
+<p><strong>Primary Use Cases</strong></p>
+</td><td class="mt-noheading" colspan="1" rowspan="1">
+<ul><li>
+<p>Just in time inventory tracking</p>
+</li><li>
+<p>Finance</p>
+</li><li>
+<p>Production quality and efficiency</p>
+</li><li>
+<p>Profit and loss tracking</p>
+</li><li>
+<p>Availability of critical equipment</p>
+</li></ul>
+</td></tr><tr><td class="mt-noheading" colspan="1" rowspan="1">
+<p><strong>Primary Metrics</strong></p>
+</td><td class="mt-noheading" colspan="1" rowspan="1">
+<ul><li>
+<p>Purchase orders</p>
+</li><li>
+<p>Purchase requests</p>
+</li><li>
+<p>Income statement</p>
+</li><li>
+<p>Balance sheet</p>
+</li><li>
+<p>General ledger</p>
+</li><li>
+<p>Sales orders</p>
+</li><li>
+<p>Accounts receivable</p>
+</li><li>
+<p>Accounts payable</p>
+</li><li>
+<p>Materials</p>
+</li><li>
+<p>Manufacturing</p>
+</li></ul>
+</td></tr><tr><td class="mt-noheading" colspan="1" rowspan="1">
+<p><strong>Primary Company Roles</strong></p>
+</td><td class="mt-noheading" colspan="1" rowspan="1">
+<ul><li>
+<p>CEO</p>
+</li><li>
+<p>CFO</p>
+</li><li>
+<p>HR</p>
+</li><li>
+<p>Sales Manager</p>
+</li></ul>
+</td></tr><tr><td class="mt-noheading" colspan="1" rowspan="1">
+<p><strong>Average Implementation Time</strong></p>
+</td><td class="mt-noheading" colspan="1" rowspan="1">
+<p>80 hours</p>
+</td></tr><tr><td class="mt-noheading" colspan="1" rowspan="1">
+<p><strong>Ease of Implementation (on a 1-to-10 scale with 1 being easiest)</strong></p>
+</td><td class="mt-noheading" colspan="1" rowspan="1">
+<p>10</p>
+</td></tr></tbody></table>
+<h2 data-aura-rendered-by="33:195;a">Architecture</h2>
+<p data-aura-rendered-by="33:195;a">The architecture of this connection can be summed up as follows:</p>
+<p data-aura-rendered-by="33:195;a"><img alt="sap_architecture.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvo"/></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>A Service-Oriented Architecture (SOA) is created in ECC and published for subscription (Publish &amp; Subscribe).</p>
+</li><li>
+<p>The service generates a Web Service Definition Language (WSDL) XML file which defines the flow of data.</p>
+</li><li>
+<p>Domo then calls the service through the WSDL and requests data as defined by the WSDL.</p>
+</li><li>
+<p>ECC then interrogates the call and sends data through the SOA packet.</p>
+</li><li>
+<p>This is all controlled and defined in SAP ECC and Netweaver.</p>
+</li></ol>
+<h2 data-aura-rendered-by="33:195;a">Connection Summary</h2>
+<p data-aura-rendered-by="33:195;a">To connect to SAP data in Domo, you must establish a DOMO-SAP data link. To do this, you will go through all of the following steps. If a step contains a hyperlink, you can click on that link to read about this step in more detail.</p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>Do all of the following in your development system:</p>
+<ol start="1" style="list-style-type: lower-alpha;"><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt"><a href="#h_6f0e9567-7acb-41a7-9569-1b782a888fde" target="_self" title="Connecting to SAP Data in Domo">Establish an RFC user for DOMO</a> </span></span></p>
+</li><li>
+<p><a href="#h_df4ff495-ecb6-4630-b179-597233919074" target="_self" title="Connecting to SAP Data in Domo">Create the ZZDOMO Function Group </a></p>
+</li><li>
+<p><a href="#h_85023159-c3cb-4181-8b33-c5f70da9af73" target="_self" title="Connecting to SAP Data in Domo">Find your ICF server path </a></p>
+</li><li>
+<p><a href="#h_5d91a7ef-6959-4852-8390-6f04138f7008" target="_self" title="Connecting to SAP Data in Domo">Load your first DOMO function module </a></p>
+</li><li>
+<p><a href="#h_a6cc6182-a47c-41c0-9c30-d3e00057c69b" target="_self" title="Connecting to SAP Data in Domo">Create an Enterprise Service </a></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt"><a href="#h_51564824-e9c3-432b-b25d-7d1aaea3c8f5" target="_self" title="Connecting to SAP Data in Domo">Publish your new service using SAP SOA</a> </span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Send an email to DOMO with:</span></span></p>
+<ul><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Server Path</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">DOMO RFC username and password</span></span></p>
+</li></ul>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Test your first web service with a DOMO representative </span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Load all additional web services</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Test all services in the Development Environment</span></span></p>
+</li></ol>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Transport all of the above to a Quality Assurance System and test thoroughly.</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Transport all of the above to a Production, or BI System.</span></span></p>
+</li></ol>
+<h2 data-aura-rendered-by="33:195;a">Connection Steps</h2>
+<h3 data-aura-rendered-by="33:195;a" id="h_6f0e9567-7acb-41a7-9569-1b782a888fde"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Step 1: Establish an RFC user for Domo</span></span></h3>
+<p data-aura-rendered-by="33:195;a"><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">To enable communication between the SAP ERP back-end system and DOMO, you must create an RFC user in the SAP ERP system. </span></span></span></p>
+<p data-aura-rendered-by="33:195;a"><strong>To establish an RFC user for Domo,</strong></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Log onto the SAP ECC system.</span></span></span></p>
+</li><li>
+<p><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Access the activity using one of the following navigation options:</span></span></span></p>
+<ol style="list-style-type: circle;"><li>
+<p><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Call transaction code</span></span></span> SU01.</p>
+</li><li>
+<p>In the SAP ERP GUI, choose  <strong>Tools &gt; Administration &gt; User Maintenance &gt; Users</strong>.</p>
+</li></ol>
+</li><li>
+<p>In the User field, enter <span class="mt-font-courier-new">ERP2DOMO</span>.</p>
+</li><li>
+<p>Select <strong>Create</strong> (F8).</p>
+</li><li>
+<p>On the <strong>Maintain User</strong> screen, enter information as shown here:</p>
+<ol start="1" style="list-style-type: lower-alpha;"><li>
+<p>On the <strong>Address</strong> tab page, enter the following:</p>
+<ul><li>
+<p><strong>Last Name</strong>: <span class="mt-font-courier-new">ERP2DOMO</span></p>
+</li><li>
+<p><strong>Function</strong>: &lt;Enter your function&gt;</p>
+</li></ul>
+</li><li>
+<p>On the <strong>Logon Data</strong> tab page, enter the following:</p>
+<ul><li>
+<p><strong>User Type: </strong><span class="mt-font-courier-new">System</span></p>
+</li><li>
+<p><strong>Password: </strong>&lt;Enter your password&gt;</p>
+</li></ul>
+</li><li>
+<p>On the <strong>Defaults</strong> tab page, enter the following:</p>
+<ul><li>
+<p><strong>Logon Language</strong>: <span class="mt-font-courier-new">EN</span></p>
+</li></ul>
+</li><li>
+<p>On the <strong>Profiles</strong> tab page, enter the following:</p>
+<ul><li>
+<p><strong>Profile</strong>: <span class="mt-font-courier-new">SAP_ALL</span> and <span class="mt-font-courier-new">SAP_NEW</span></p>
+</li></ul>
+</li><li>
+<p>Save your entries (Ctrl + S).</p>
+</li></ol>
+</li></ol>
+<div class="info-box note" data-aura-rendered-by="33:195;a">
+<div class="info-box-wrapper">
+<div class="info-box-icon-container"> </div>
+<div class="info-box-content-container">
+<div class="info-box-content"><span><strong>Note: </strong></span><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">The</span></span></span> <span class="mt-color-333333"><span class="mt-font-Courier New"><span class="mt-font-size-10.0pt">ERP2DOMO</span></span></span> <span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">user has the profiles <span class="mt-font-courier-new">SAP_ALL</span> and <span class="mt-font-courier-new">SAP_NEW</span> assigned, which gives him full authorization rights. If this authorization is not applicable to your project, you can restrict the rights of this user according to SAP Note</span></span></span> <a href="http://service.sap.com/~form/handler?_APP=01100107900000000342&amp;_EVENT=REDIR&amp;_NNUM=0338537&amp;_NLANG=en&amp;_NVERS=0" target="_blank" title="Go to SAP note 0338537">0338537</a><span class="mt-color-333333"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">.</span></span></span></div>
+</div>
+</div>
+</div>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self" title="Connecting to SAP Data in Domo">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a" id="h_df4ff495-ecb6-4630-b179-597233919074">Step 2: Create the ZZDomo Function Group</h3>
+<p data-aura-rendered-by="33:195;a">After establishing your RFC user in the SAP ERP system, you must next create the ZZDomo function group.</p>
+<p data-aura-rendered-by="33:195;a"><strong>To create the ZZDomo function group in the SAP ERP system,</strong></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>Run transaction SE80 (<span class="mt-font-courier-new">/nSE80</span>).<br/><br/><img alt="sapimages_2_1.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvp"/></p>
+</li><li>
+<p>Select <strong>Repository Browser</strong>.</p>
+</li><li>
+<p>Select <strong>Function Group</strong> in the menu.</p>
+</li><li>
+<p>Enter <span class="mt-font-courier-new">ZZDOMO</span> in the empty field then hit Enter.<br/><br/><img alt="sapimages_2_2.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvj"/></p>
+</li><li>
+<p>Click <strong>Yes</strong>.</p>
+</li><li>
+<p>In the <strong>Short text</strong> field, enter <span class="mt-font-courier-new">Domo Function Group</span>, then hit Enter.</p>
+</li><li>
+<p>Select your Business Intelligence package then click <strong>Save</strong>. (If you don't have a B.I. package, use a package starting with "z").</p>
+</li><li>
+<p>Enter or select your CTS request number for your Domo development, then click <strong>Save</strong>.<br/><br/><img alt="sapimages_2_3.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNva"/></p>
+</li></ol>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self" title="Connecting to SAP Data in Domo">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a" id="h_85023159-c3cb-4181-8b33-c5f70da9af73">Step 3: Find Your ICF Server Path</h3>
+<p data-aura-rendered-by="33:195;a"><strong>To find your ICF server path,</strong></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>Run transaction SICF (<span class="mt-font-courier-new">/nSICF</span>).<br/><br/><img alt="sapimages_3_1.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvv"/></p>
+</li><li>
+<p>Click the <strong>Execute</strong> icon.<br/><br/><img alt="sapimages_3_2.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvs"/></p>
+</li><li>
+<p>Navigate to path <span class="mt-font-courier-new">default_host &gt; sap &gt; bc &gt; gui &gt; sap &gt; its &gt; webgui &gt; SE61-DISPTXT</span>.</p>
+</li><li>
+<p>Right-click and select <strong>Test Service</strong>.<br/><br/><img alt="sapimages_3_3.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvb"/><br/><br/>If the webgui service does not contain the SE61-DISPTXT sub-element, right-click on the webgui service and select <strong>Test Service</strong>.</p>
+</li><li>
+<p>Copy the IE path and email it to Domo.<br/><br/><img alt="sapimages_3_4.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvq"/></p>
+</li></ol>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self" title="Connecting to SAP Data in Domo">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a" id="h_5d91a7ef-6959-4852-8390-6f04138f7008">Step 4: Load Your First Domo Function Module</h3>
+<p data-aura-rendered-by="33:195;a">Use the following set of steps to load all Domo function modules. You can find specifications for all available function modules in <a href="#h_91170981-cbe7-4ca9-93eb-e08f3f5ca2d0" target="_self" title="Connecting to SAP Data in Domo">Function Module Specifications</a>.</p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>In your development client, run transaction SE37 (/<span class="mt-font-courier-new">nSE37</span>).</p>
+</li><li>
+<p>Input the provided function module name, then click <strong>Create</strong>.<br/>In this example, the name is <span class="mt-font-courier-new">Z_DOMO_PP</span>.<br/><br/><img alt="sapimages_4_1.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvu"/> </p>
+</li><li>
+<p>Enter <span class="mt-font-courier-new">ZZDOMO</span> in the <strong>Function Group</strong> field.<br/><br/><img alt="sapimages_4_2.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvl"/></p>
+</li><li>
+<p>In the <strong>Short text</strong> field, describe your function module.</p>
+</li><li>
+<p>Click <strong>Save</strong>.</p>
+</li><li>
+<p>In the <strong>Import</strong> tab, enter the input fields from your load sheet.<br/>Make sure to check the boxes for <strong>Optional </strong>and <strong>Pass Value</strong>.<br/><br/><img alt="sapimages_4_3.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvf"/></p>
+</li><li>
+<p>In the <strong>Attributes</strong> tab, select <strong>Remote Enabled</strong> <strong>Module</strong>.<br/><br/><img alt="sapimages_4_4.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvX"/></p>
+</li><li>
+<p>In the <strong>Tables</strong> tab, enter your return tables from your load sheet.<br/><br/><img alt="sapimages_4_5.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvd"/></p>
+</li><li>
+<p>Copy the code section from your load sheet.</p>
+</li><li>
+<p>Paste the copied code into the <strong>Source code</strong> tab.<br/><br/><img alt="sapimages_4_6.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvh"/></p>
+</li><li>
+<p>Click the <strong>Check</strong> icon.<br/><br/><img alt="sapimages_4_7.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvW"/></p>
+</li><li>
+<p>Click the <strong>Save </strong>icon.<br/><br/><img alt="sapimages_4_8.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvg"/></p>
+</li><li>
+<p>Click the <strong>Activate </strong>icon.<br/><br/><img alt="sapimages_4_9.png" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvi"/></p>
+</li><li>
+<p>Click the green checkmark at the bottom of the screen.<img alt="" class="internal default" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvt"/><br/><br/></p>
+</li></ol>
+<p data-aura-rendered-by="33:195;a">Congratulations, you have created a function module!</p>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a" id="h_a6cc6182-a47c-41c0-9c30-d3e00057c69b">Step 5: Create an Enterprise Service</h3>
+<p data-aura-rendered-by="33:195;a"><strong>To create an enterprise service,</strong></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>Run transaction SE80 (<span class="mt-font-courier-new">/nSE80</span>).</p>
+</li><li>
+<p>Under <strong>Function Group</strong>, enter ZDOMO then click on the dropdown to open the list of function modules.</p>
+</li><li>
+<p>Right-click on your new function module and select <strong>Create &gt; Enterprise Service</strong>.<br/><br/><img alt="" class="internal default" height="727px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvn" style="width: 544px;height: 727px;" width="544px"/><br/> </p>
+</li><li>
+<p>Name the new service and give it a description, then click <strong>Continue</strong>.</p>
+</li><li>
+<p>Click <strong>Continue </strong>again.</p>
+</li><li>
+<p>Select a security profile, then click <strong>Continue</strong>.<br/><br/><img alt="" class="internal default" height="828px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvc" style="width: 740px;height: 828px;" width="740px"/></p>
+</li><li>
+<p>Select your Package and Transport Request, then click <strong>Continue</strong>.</p>
+</li><li>
+<p>Click <strong>Complete</strong>.</p>
+</li><li>
+<p>Click <strong>Activate</strong>.</p>
+</li><li>
+<p>Click <strong>Continue</strong>.</p>
+</li></ol>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self" title="Connecting to SAP Data in Domo">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a" id="h_51564824-e9c3-432b-b25d-7d1aaea3c8f5">Step 6: Publish Your New Service Using SAP SOA</h3>
+<p data-aura-rendered-by="33:195;a"><strong>To publish your new enterprise service,</strong></p>
+<ol data-aura-rendered-by="33:195;a"><li>
+<p>Run transaction SOAMANAGER (/<span class="mt-font-courier-new">nSOAMANAGER</span>).<br/>This launches the web-based SOA Manager.</p>
+</li><li>
+<p>Click <strong>Log On</strong>.</p>
+</li><li>
+<p>Log in using your ECC credentials.<br/><br/><img alt="" class="internal default" height="337px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvV" style="width: 400px;height: 337px;" width="400px"/></p>
+</li><li>
+<p>Select <strong>Service Administration</strong>.</p>
+</li><li>
+<p>Select <strong>Single Service Configuration</strong>.</p>
+</li><li>
+<p>In the <strong>Search Pattern</strong> field, enter the name of the new enterprise service, then click <strong>Go</strong>.<br/><br/><img alt="" class="internal default" height="286px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvk" style="width: 400px;height: 286px;" width="400px"/></p>
+</li><li>
+<p>Select your service, then click <strong>Apply Selection</strong>.<br/><br/><img alt="" class="internal default" height="306px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvZ" style="width: 400px;height: 306px;" width="400px"/></p>
+</li><li>
+<p>Open the <strong>Configuration</strong> tab.</p>
+</li><li>
+<p>Click <strong>Create Endpoint</strong>.<br/><br/><img alt="" class="internal default" height="216px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvY" style="width: 350px;height: 216px;" width="350px"/></p>
+</li><li>
+<p>In the <strong>Service Information</strong> dialog, enter the following:</p>
+<ul><li>
+<p>The service name (match the name of the service)</p>
+</li><li>
+<p>A description</p>
+</li><li>
+<p>A binding name<br/><br/><img alt="" class="internal default" height="118px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNve" style="width: 300px;height: 118px;" width="300px"/></p>
+</li></ul>
+</li><li>
+<p>Click <strong>Apply Settings</strong>.</p>
+</li><li>
+<p>Check the box for <strong>User ID/Password</strong>.<br/><br/><img alt="" class="internal default" height="225px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvm" style="width: 300px;height: 225px;" width="300px"/></p>
+</li><li>
+<p>Scroll up and click <strong>Save</strong>.</p>
+</li><li>
+<p>Open the <strong>Overview</strong> tab.</p>
+</li><li>
+<p>Click <strong>Display selected Binding's or Service's WSDL URL</strong>.<br/><br/><img alt="" class="internal default" height="184px" src="/servlet/rtaImage?eid=ka0Vq0000000BBZ&amp;feoid=00N5w00000Ri7BU&amp;refid=0EM5w000005vNvr" style="width: 275px;height: 184px;" width="275px"/></p>
+</li><li>
+<p>Copy the URL and email it to Domo.</p>
+</li></ol>
+<p data-aura-rendered-by="33:195;a"><a href="#h_66257ce2-20c5-40a2-89d5-6a912456bca3" target="_self" title="Connecting to SAP Data in Domo">Back to top</a></p>
+<h3 data-aura-rendered-by="33:195;a">Next Steps</h3>
+<p data-aura-rendered-by="33:195;a">Once you have completed all of the above steps, you have only a few tasks remaining. These tasks are as follows:</p>
+<ol data-aura-rendered-by="33:195;a"><li style="list-style-type: none;">
+<ol start="1" style="list-style-type: lower-alpha;"><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Send an email to DOMO with:</span></span></p>
+<ul><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Server Path</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">DOMO RFC username and password</span></span></p>
+</li></ul>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Test your first web service with a DOMO representative </span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Load all additional web services</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Test all services in the Development Environment</span></span></p>
+</li></ol>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Transport all of the above to a Quality Assurance System and test thoroughly.</span></span></p>
+</li><li>
+<p><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Transport all of the above to a Production, or BI System.</span></span></p>
+</li></ol>
+<h2 data-aura-rendered-by="33:195;a" id="h_91170981-cbe7-4ca9-93eb-e08f3f5ca2d0"><span class="mt-font-Arial,sans-serif"><span class="mt-font-size-10.0pt">Function Module Specifications</span></span></h2>
+<p data-aura-rendered-by="33:195;a">Use the following table to locate specification sheets in <span class="mt-font-courier-new">.docx</span> format for each function module (as required in <a href="#h_5d91a7ef-6959-4852-8390-6f04138f7008" target="_self" title="Connecting to SAP Data in Domo">Step 4</a> above).</p>
+<table cellpadding="0" cellspacing="0" data-aura-rendered-by="33:195;a" width="100%"><thead><tr><th colspan="1" rowspan="1" style="width: 278px;">
+<p>Data Type</p>
+</th><th colspan="1" rowspan="1" style="width: 301px;">
+<p>Function Module</p>
+</th><th colspan="1" rowspan="1" style="width: 320px;">
+<p>Tables</p>
+</th><th colspan="1" rowspan="1" style="width: 330px;">
+<p>Link to Spec Sheet</p>
+</th></tr></thead><tbody><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Costs</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_COST</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>COBK, COEP</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Cost Details Specification.docx">Cost Details Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Cost Element Group</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_COST_KAH3</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>KAH3</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>General Ledger:Actual Line Items</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_FAGLFLEXA_SO</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>FAGLFLEXA, BKPF, SKA1</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="FAGLFLEXA Specification.docx">FAGLFLEXA Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Cost Center Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_CSKS</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>CSKS</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>General Ledger Totals</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_FAGLFLEXT</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>FAGLFLEXT</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="FAGLFLEXT Specification.docx">FAGLFLEXT Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p><span class="mt-color-333333">General Ledger Details</span></p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_FAGLFLEXT_COST</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>CEPC, CEPCT, SKB1, SKAT, TFKBT</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p><span class="mt-color-333333">Financial Documents</span></p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_FI_DOC</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>BKPF, BSAD, BSAK, BSID, BSIK, BSEG</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="FI Documents Specification.docx">FI Documents Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p><span class="mt-color-333333">Financial Documents GL Detail</span></p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_FI_DOC_GL</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>BKPF, BSIS, BSAS</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="FI GL Documents Specification.docx">FI GL Documents Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p><span class="mt-color-333333">Account Master</span></p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_GLT0</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>GLT0</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="GLT0 Specification.docx">GLT0 Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Inventory</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_INVENTORY</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>MARD, MARC</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Inventory Specification.docx">Inventory Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Profitability Analysis</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_KE30</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>CE31010</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Purchase Orders</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_PO</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>EKKO, EKPO</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Purchase Order Specification.docx">Purchase Order Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Sales Billing</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_SALES_BILLING</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>VBRK, VBRP, VBPA, MVKE</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Sales Billing Specification.docx">Sales Billing Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Sales Documents</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_SDOC</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>VBFA</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Sales Document Specification.docx">Sales Document Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;">
+<p>Sales Orders</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;">
+<p>Z_DOMO_SO</p>
+</td><td colspan="1" rowspan="1" style="width: 320px;">
+<p>VBAK, VBAP, VBEP, VBKD</p>
+</td><td colspan="1" rowspan="1" style="width: 330px;">
+<p><a target="_blank" title="Sales Orders Specification.docx">Sales Orders Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Address Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_ADR</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>ADR6, ADRC</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Address Specification.docx">Address Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Cross Application Time Card</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_CATS</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>CATSDB</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Cross Application Time Card Specification.docx">Cross Application Time Card Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Customer Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_CM</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>KNA1, KNVP, KNB1, KNKK</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Customer Master Specification.docx">Customer Master Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Cost Center Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_COA</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>SKA1</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Cost Totals</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_COST_TOTAL</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>COSS, COSP</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Cost totals Specification.docx">Cost Totals Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Delivery</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_DELIVERY</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>LIKP, LIPS</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Delivery Specification.docx">Delivery Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Expense Details</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_EXPENSE_COE</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>COVP</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Expense COE Specification.docx">Expense COE Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Expense by Vendor or Customer</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_EXPENSE_PCA</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>GLPCA</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Expense PCA Specification.docx">Expense PCA Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Expense PCT Details</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_EXPENSE_PCT</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>GLPCT</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Expense PCT Specification.docx">Expense PCT Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Materials Documents</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_MAT_DOC</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>MKPF, MSEG</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Material Documents Specification.docx">Material Documents Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Material Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_MM</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>MARA, MVKE, TVM5T, MARM, MBEW, T001W, MAKT</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Messages Specification.docx">Material Master Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Product Hierarchy</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_PH</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>T179T</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Product Hierarchy Specification.docx">Product Hierarchy Specification.docx</a> </p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Purchase Order History</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_PO_HIST</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>EKBE</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Purchase Order History Specification.docx">Purchase Order History Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Pricing</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_PRICING</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>KONH, KONP, KONV</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Pricing Specification.docx">Pricing Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Reservations</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_RESB</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>RKPF, RESB</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Reservations Specification.docx">Reservations Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Messages</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_T001</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>T001, T001S</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Messages Specification.docx">Messages Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Vendor Master</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_VM</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>LFA1, LFB1</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><a target="_blank" title="Vendor Master Specification.docx">Vendor Master Specification.docx</a></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Account Master joined with Chart of Accounts</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_COA_GL</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>COA_GL</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Relationships in GOS</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_SRGBTBREL</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>SRGBTBREL</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr><tr><td colspan="1" rowspan="1" style="width: 278px;height: 19px;">
+<p>Sales Status</p>
+</td><td colspan="1" rowspan="1" style="width: 301px;height: 19px;">
+<p>Z_DOMO_SALES_STATUS</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 320px;">
+<p>VBUK, VBUP</p>
+</td><td colspan="1" rowspan="1" style="height: 19px;width: 330px;">
+<p><span class="mt-color-ff0000">NOT YET AVAILABLE</span></p>
+</td></tr></tbody></table>
+<p data-aura-rendered-by="33:195;a"><strong>Note:</strong> The hyperlinks in the <strong>Link to Spec Sheet</strong> column does not point to any documentation. </p>
+<h2 data-aura-rendered-by="33:195;a">Troubleshooting</h2>
+<ul data-aura-rendered-by="33:195;a"><li>
+<p>Test the connection to the web service using SoapUI.</p>
+</li><li>
+<p>Run the function module locally in the SAP environment.</p>
+</li></ul></div></span><!--render facet: 43:195;a--><!--render facet: 44:195;a--></div></div></div></div></div></div></div><div class="test-id__section slds-section slds-is-open full forcePageBlockSection forcePageBlockSectionView" data-aura-class="forcePageBlockSection forcePageBlockSectionView" data-aura-rendered-by="141:195;a"><h3 class="slds-section__title test-id__section-header-container" data-aura-rendered-by="143:195;a" data-target-reveals="sfdc:RecordField.Knowledge__kav.Preview_Article__c,sfdc:RecordField.Knowledge__kav.UrlName,sfdc:RecordField.Knowledge__kav.Summary"><button aria-controls="71:195;a" aria-expanded="true" class="slds-button test-id__section-header-button slds-section__title-action" data-aura-rendered-by="153:195;a" type="button"><!--render facet: 154:195;a--><lightning-icon class="slds-icon-utility-chevrondown test-id__section-header-icon section-icon slds-m-right_x-small slds-button__icon slds-icon_container forceIcon" data-aura-class="forceIcon" data-aura-rendered-by="149:195;a" data-data-rendering-service-uid="155" icon-name="utility:chevrondown"><span part="boundary" style="--sds-c-icon-color-background: var(--slds-c-icon-color-background, transparent)"><lightning-primitive-icon size="xx-small" variant="inverse"><svg aria-hidden="true" class="slds-icon slds-icon_xx-small" data-key="chevrondown" focusable="false" part="icon" viewbox="0 0 520 520"><g><path d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-162c6-6 16-6 22 0l22 22c5 6 5 15 0 21z"></path></g></svg></lightning-primitive-icon></span></lightning-icon><span class="test-id__section-header-title slds-truncate" data-aura-rendered-by="150:195;a">Summary (only shown to internal users)</span><!--render facet: 157:195;a--></button></h3><div aria-hidden="false" class="test-id__section-content slds-section__content section__content" data-aura-rendered-by="158:195;a" id="71:195;a" style="transition: none 0s ease 0s;"><div class="slds-form slds-form_stacked" data-aura-rendered-by="159:195;a"><div class="slds-grid slds-gutters_small full cols-1 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="93:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="80:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.Preview_Article__c"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="81:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="82:195;a"><span class="test-id__field-label" data-aura-rendered-by="83:195;a">Preview Article</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="85:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="86:195;a"><span class="lvm-grid-no-fade-out undefined forceOutputFormulaHtml" data-aura-class="forceOutputFormulaHtml" data-aura-rendered-by="77:195;a"><a data-aura-rendered-by="78:195;a" href="https://domo-support.domo.com/s/article/360043437673" target="_blank">Click here to preview</a></span></span><!--render facet: 88:195;a--><!--render facet: 89:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-1 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="114:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="101:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.UrlName"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="102:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="103:195;a"><span class="test-id__field-label" data-aura-rendered-by="104:195;a">URL Name</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="106:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="107:195;a"><span class="uiOutputText" data-aura-class="uiOutputText" data-aura-rendered-by="99:195;a">360043437673</span></span><!--render facet: 109:195;a--><!--render facet: 110:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-1 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="137:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate has-tooltip full long-text forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="124:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.Summary"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="125:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="126:195;a"><span class="test-id__field-label" data-aura-rendered-by="127:195;a">Summary</span><div aria-describedby="tt-for-421:0" class="tooltip-trigger uiTooltip" data-aura-class="uiTooltip" data-aura-rendered-by="424:0" tabindex="0"><lightning-icon class="slds-icon-utility-info tooltipIcon slds-button__icon slds-icon_container forceIcon" data-aura-class="forceIcon" data-aura-rendered-by="420:0" data-data-rendering-service-uid="156" icon-name="utility:info"><span part="boundary" style="--sds-c-icon-color-background: var(--slds-c-icon-color-background, transparent)"><lightning-primitive-icon size="xx-small" variant="inverse"><svg aria-hidden="true" class="slds-icon slds-icon_xx-small" data-key="info" focusable="false" part="icon" viewbox="0 0 520 520"><g><path d="M260 20a240 240 0 100 480 240 240 0 100-480zm0 121c17 0 30 13 30 30s-13 30-30 30-30-13-30-30 13-30 30-30zm50 210c0 5-4 9-10 9h-80c-5 0-10-3-10-9v-20c0-5 4-11 10-11 5 0 10-3 10-9v-40c0-5-4-11-10-11-5 0-10-3-10-9v-20c0-5 4-11 10-11h60c5 0 10 5 10 11v80c0 5 4 9 10 9 5 0 10 5 10 11z"></path></g></svg></lightning-primitive-icon></span></lightning-icon><span class="tooltip-invisible" data-aura-rendered-by="426:0" id="tt-for-421:0" role="tooltip">Briefly describe the article. The summary is used in search results to help users find relevant articles. You can improve the accuracy of search results by including phrases that your customers use to describe this issue or topic.</span></div></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="129:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="130:195;a"><span class="uiOutputTextArea" data-aura-class="uiOutputTextArea" data-aura-rendered-by="120:195;a"><!--render facet: 122:195;a--></span></span><!--render facet: 132:195;a--><!--render facet: 133:195;a--></div></div></div></div></div></div></div><div class="test-id__section slds-section slds-is-open full forcePageBlockSection forcePageBlockSectionView" data-aura-class="forcePageBlockSection forcePageBlockSectionView" data-aura-rendered-by="361:195;a"><h3 class="slds-section__title test-id__section-header-container" data-aura-rendered-by="363:195;a" data-target-reveals="sfdc:RecordField.Knowledge__kav.ArticleNumber,sfdc:RecordField.Knowledge__kav.ArchivedDate,sfdc:RecordField.Knowledge__kav.Language,sfdc:RecordField.Knowledge__kav.MasterVersionId,sfdc:RecordField.Knowledge__kav.ArticleTotalViewCount,sfdc:RecordField.Knowledge__kav.ArticleCreatedDate,sfdc:RecordField.Knowledge__kav.FirstPublishedDate"><button aria-controls="160:195;a" aria-expanded="true" class="slds-button test-id__section-header-button slds-section__title-action" data-aura-rendered-by="373:195;a" type="button"><!--render facet: 374:195;a--><lightning-icon class="slds-icon-utility-chevrondown test-id__section-header-icon section-icon slds-m-right_x-small slds-button__icon slds-icon_container forceIcon" data-aura-class="forceIcon" data-aura-rendered-by="369:195;a" data-data-rendering-service-uid="157" icon-name="utility:chevrondown"><span part="boundary" style="--sds-c-icon-color-background: var(--slds-c-icon-color-background, transparent)"><lightning-primitive-icon size="xx-small" variant="inverse"><svg aria-hidden="true" class="slds-icon slds-icon_xx-small" data-key="chevrondown" focusable="false" part="icon" viewbox="0 0 520 520"><g><path d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-162c6-6 16-6 22 0l22 22c5 6 5 15 0 21z"></path></g></svg></lightning-primitive-icon></span></lightning-icon><span class="test-id__section-header-title slds-truncate" data-aura-rendered-by="370:195;a">System Information (only shown to internal users)</span><!--render facet: 377:195;a--></button></h3><div aria-hidden="false" class="test-id__section-content slds-section__content section__content" data-aura-rendered-by="378:195;a" id="160:195;a" style="transition: none 0s ease 0s;"><div class="slds-form slds-form_stacked" data-aura-rendered-by="379:195;a"><div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="197:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="167:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.ArticleNumber"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="168:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="169:195;a"><span class="test-id__field-label" data-aura-rendered-by="170:195;a">Article Number</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="172:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="173:195;a"><span class="uiOutputText" data-aura-class="uiOutputText" data-aura-rendered-by="165:195;a">000003163</span></span><!--render facet: 175:195;a--><!--render facet: 176:195;a--></div></div></div><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="184:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.ArchivedDate"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="185:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="186:195;a"><span class="test-id__field-label" data-aura-rendered-by="187:195;a">Archived Date</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="189:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="190:195;a"><span class="uiOutputDateTime" data-aura-class="uiOutputDateTime" data-aura-rendered-by="182:195;a"></span></span><!--render facet: 192:195;a--><!--render facet: 193:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="252:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="206:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.Language"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="207:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="208:195;a"><span class="test-id__field-label" data-aura-rendered-by="209:195;a">Language</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="211:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="212:195;a"><span data-aura-rendered-by="203:195;a">English</span></span><!--render facet: 214:195;a--><!--render facet: 215:195;a--></div></div></div><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="239:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.MasterVersionId"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="240:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="241:195;a"><span class="test-id__field-label" data-aura-rendered-by="242:195;a">Primary Version</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="244:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="245:195;a"><!--render facet: 221:195;a--><!--render facet: 223:195;a--><!--render facet: 225:195;a--><a class="outputLookupLink slds-truncate outputLookupLink-ka0Vq0000000BBZIA2-219:195;a forceOutputLookup" data-aura-class="forceOutputLookup" data-aura-rendered-by="230:195;a" data-navigable="true" data-ownerid="219:195;a" data-recordid="ka0Vq0000000BBZIA2" data-refid="recordId" data-special-link="true" href="/s/article/360043437673" rel="noreferrer" target="_blank" title="Connecting to SAP ECC Data in Domo">Connecting to SAP ECC Data in Domo<!--render facet: 233:195;a--></a></span><!--render facet: 247:195;a--><!--render facet: 248:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="287:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="260:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.ArticleTotalViewCount"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="261:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="262:195;a"><span class="test-id__field-label" data-aura-rendered-by="263:195;a">Article Total View Count</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="265:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="266:195;a"><span class="uiOutputNumber" data-aura-class="uiOutputNumber" data-aura-rendered-by="258:195;a" dir="auto">12,491</span></span><!--render facet: 268:195;a--><!--render facet: 269:195;a--></div></div></div><div class="slds-col slds-grid slds-has-flexi-truncate full blank-item forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="274:195;a" data-target-selection-name=""><div class="slds-form-element slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="275:195;a"><div class="test-id__field-label-container slds-form-element__label slds-hide" data-aura-rendered-by="276:195;a"><span class="test-id__field-label" data-aura-rendered-by="277:195;a"></span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="279:195;a"><span class="test-id__field-value slds-form-element__static slds-grow slds-is-empty is-read-only" data-aura-rendered-by="280:195;a"><!--render facet: 281:195;a--></span><!--render facet: 282:195;a--><!--render facet: 283:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="322:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="295:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.ArticleCreatedDate"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="296:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="297:195;a"><span class="test-id__field-label" data-aura-rendered-by="298:195;a">Article Created Date</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="300:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="301:195;a"><span class="uiOutputDateTime" data-aura-class="uiOutputDateTime" data-aura-rendered-by="293:195;a">10/24/2022, 9:11 PM</span></span><!--render facet: 303:195;a--><!--render facet: 304:195;a--></div></div></div><div class="slds-col slds-grid slds-has-flexi-truncate full blank-item forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="309:195;a" data-target-selection-name=""><div class="slds-form-element slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="310:195;a"><div class="test-id__field-label-container slds-form-element__label slds-hide" data-aura-rendered-by="311:195;a"><span class="test-id__field-label" data-aura-rendered-by="312:195;a"></span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="314:195;a"><span class="test-id__field-value slds-form-element__static slds-grow slds-is-empty is-read-only" data-aura-rendered-by="315:195;a"><!--render facet: 316:195;a--></span><!--render facet: 317:195;a--><!--render facet: 318:195;a--></div></div></div></div><div class="slds-grid slds-gutters_small full cols-2 forcePageBlockSectionRow" data-aura-class="forcePageBlockSectionRow" data-aura-rendered-by="357:195;a"><div class="slds-col slds-grid slds-has-flexi-truncate full forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="330:195;a" data-target-selection-name="sfdc:RecordField.Knowledge__kav.FirstPublishedDate"><div class="slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="331:195;a"><div class="test-id__field-label-container slds-form-element__label" data-aura-rendered-by="332:195;a"><span class="test-id__field-label" data-aura-rendered-by="333:195;a">First Published Date</span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="335:195;a"><span class="test-id__field-value slds-form-element__static slds-grow is-read-only" data-aura-rendered-by="336:195;a"><span class="uiOutputDateTime" data-aura-class="uiOutputDateTime" data-aura-rendered-by="328:195;a">10/24/2022, 10:42 PM</span></span><!--render facet: 338:195;a--><!--render facet: 339:195;a--></div></div></div><div class="slds-col slds-grid slds-has-flexi-truncate full blank-item forcePageBlockItem forcePageBlockItemView" data-aura-class="forcePageBlockItem forcePageBlockItemView" data-aura-rendered-by="344:195;a" data-target-selection-name=""><div class="slds-form-element slds-grow slds-hint-parent override--slds-form-element" data-aura-rendered-by="345:195;a"><div class="test-id__field-label-container slds-form-element__label slds-hide" data-aura-rendered-by="346:195;a"><span class="test-id__field-label" data-aura-rendered-by="347:195;a"></span></div><div class="slds-form-element__control slds-grid itemBody" data-aura-rendered-by="349:195;a"><span class="test-id__field-value slds-form-element__static slds-grow slds-is-empty is-read-only" data-aura-rendered-by="350:195;a"><!--render facet: 351:195;a--></span><!--render facet: 352:195;a--><!--render facet: 353:195;a--></div></div></div></div></div></div></div></div></article></div>
