@@ -39,7 +39,7 @@ class GoogleSearch:
         cls,
         auth: GoogleSearchAuth,
         query: str,
-        json_cache_path: str = None,
+        cache_path: str = None,
         # return_raw: bool = False,
         is_ignore_cache: bool = False,
         debug_api: bool = False,
@@ -48,7 +48,7 @@ class GoogleSearch:
         res = await gd.get_data(
             url=auth.base_url,
             method="GET",
-            json_cache_path=json_cache_path,
+            cache_path=cache_path,
             debug_api=debug_api,
             params={"q": query},
             is_ignore_cache=is_ignore_cache,

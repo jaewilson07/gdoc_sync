@@ -20,7 +20,7 @@ async def get_boards(
     return_raw: bool = False,
     client: httpx.AsyncClient = None,
     is_ignore_cache: bool = False,
-    json_cache_path: str = None,
+    cache_path: str = None,
 ):
     url = f"https://{auth.instance}/rest/agile/1.0/board"
 
@@ -39,7 +39,7 @@ async def get_boards(
         debug_api=debug_api,
         client=client,
         is_ignore_cache=is_ignore_cache,
-        json_cache_path=json_cache_path,
+        cache_path=cache_path,
     )
 
     if return_raw:

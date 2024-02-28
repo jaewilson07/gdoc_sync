@@ -28,7 +28,7 @@ async def get_linked_in_profile_route(
     auth: ProxyCurlAuth,
     linkedin_profile_url: str = None,
     client: httpx.AsyncClient = None,
-    json_cache_path: str = None,
+    cache_path: str = None,
     is_ignore_cache: bool = False,
     parent_class: str = None,
     debug_api: bool = False,
@@ -38,10 +38,10 @@ async def get_linked_in_profile_route(
 
     url = "https://nubela.co/proxycurl/api/v2/linkedin"
 
-    if not json_cache_path:
+    if not cache_path:
         url_id = url.replace("https://www.linkedin.com/in/", "")
         url_id = url_id.split("/")[0]
-        json_cache_path = "CACHE\linkedin_profile_{url_id}.json"
+        cache_path = "CACHE\linkedin_profile_{url_id}.json"
 
     params = {
         "linkedin_profile_url": linkedin_profile_url,
@@ -65,7 +65,7 @@ async def get_linked_in_profile_route(
         auth=auth,
         method="GET",
         client=client,
-        json_cache_path=json_cache_path,
+        cache_path=cache_path,
         is_ignore_cache=is_ignore_cache,
         parent_class=parent_class,
         debug_api=debug_api,
@@ -79,7 +79,7 @@ async def scrape_linkedin_profile(
     auth: ProxyCurlAuth,
     linkedin_profile_url: str = None,
     client: httpx.AsyncClient = None,
-    json_cache_path: str = None,
+    cache_path: str = None,
     is_ignore_cache: bool = False,
     debug_api: bool = False,
     debug_prn: bool = False,
@@ -90,7 +90,7 @@ async def scrape_linkedin_profile(
         auth=auth,
         linkedin_profile_url=linkedin_profile_url,
         client=client,
-        json_cache_path=json_cache_path,
+        cache_path=cache_path,
         is_ignore_cache=is_ignore_cache,
         debug_api=debug_api,
         debug_prn=debug_prn,

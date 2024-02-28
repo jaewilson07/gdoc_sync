@@ -46,10 +46,12 @@ class ResponseGetData:
         self.is_success = True if self.status >= 200 and self.status <= 399 else False
 
     @classmethod
-    def _from_httpx(cls, res: httpx.Response, auth: Any = None):
+    def _from_httpx(cls, res: httpx.Response, auth: Any = None, content=None):
+        response = res.json() if not res.is_success else (content or res.json())
+
         return cls(
             status=res.status_code,
-            response=res.json(),
+            response=response,
             is_success=res.is_success,
             is_from_cache=False,
             auth=auth,
@@ -66,35 +68,47 @@ class ResponseGetData:
         )
 
 # %% ../nbs/client/client.ipynb 11
-def get_cache(json_cache_path: str, debug_prn: bool = False) -> Union[dict, None]:
+def get_cache(cache_path: str, debug_prn: bool = False) -> Union[dict, None]:
     """function for getting cached data from json file"""
 
     json_data = None
-    ut.upsert_folder(folder_path=json_cache_path, debug_prn=debug_prn)
+    ut.upsert_folder(folder_path=cache_path, debug_prn=debug_prn)
 
     try:
-        with open(json_cache_path, "r", encoding="utf-8") as file:
+        with open(cache_path, "r", encoding="utf-8") as file:
             json_data = json.load(file)
 
     except (FileNotFoundError, json.JSONDecodeError) as e:
-        with open(json_cache_path, "w+", encoding="utf-8") as file:
+        with open(cache_path, "w+", encoding="utf-8") as file:
             pass
         json_data = None
 
     if json_data:
         if debug_prn:
-            print(f"🚀 Using cached data in {json_cache_path}")
+            print(f"🚀 Using cached data in {cache_path}")
 
     return json_data
 
 
-def update_cache(json_cache_path: str, json_data: dict):
-    ut.upsert_folder(json_cache_path)
+def update_cache(cache_path: str, data: Any, debug_prn: bool = False):
+    ut.upsert_folder(cache_path)
 
-    with open(json_cache_path, "w", encoding="utf-8") as file:
-        json.dump(json_data, file)
+    cache_path = ut.rename_filepath_to_match_datatype(data, cache_path)
 
-    return True
+    if debug_prn:
+        print(f"updating {type(data)} content to {cache_path}")
+        print(data)
+
+    if isinstance(data, bytearray) or isinstance(data, bytes):
+        with open(cache_path, "wb") as bf:
+            return bf.write(data)
+
+    with open(cache_path, "w+", encoding="utf-8") as fp:
+        if isinstance(data, dict):
+            return json.dump(data, fp)
+
+        if isinstance(data, str):
+            return fp.write(data)
 
 # %% ../nbs/client/client.ipynb 15
 def prepare_fetch(
@@ -123,7 +137,7 @@ def _generate_cache_name(url):
 async def get_data(
     url: str,
     method: str,
-    json_cache_path: str = None,
+    cache_path: str = None,
     is_ignore_cache: bool = False,
     headers: dict = None,
     params: dict = None,
@@ -137,10 +151,10 @@ async def get_data(
 ) -> ResponseGetData:
     """wrapper for httpx Request library, always use with jiralibrary class"""
 
-    json_cache_path = json_cache_path or _generate_cache_name(url)
+    cache_path = cache_path or _generate_cache_name(url)
 
-    if not is_ignore_cache and json_cache_path:
-        json_data = get_cache(json_cache_path=json_cache_path, debug_prn=debug_prn)
+    if not is_ignore_cache and cache_path:
+        json_data = get_cache(cache_path=cache_path, debug_prn=debug_prn)
 
         if json_data:
             return ResponseGetData._from_cache(data=json_data, auth=auth)
@@ -163,7 +177,7 @@ async def get_data(
                 "url": url,
                 "params": params,
                 "body": body,
-                "cache_file_path": json_cache_path,
+                "cache_file_path": cache_path,
                 "debug_api": debug_api,
                 "parent_class": parent_class,
             }
@@ -190,11 +204,11 @@ async def get_data(
     rgd = ResponseGetData._from_httpx(res, auth=auth)
 
     if rgd.is_success:
-        update_cache(json_cache_path=json_cache_path, json_data=rgd.response)
+        update_cache(cache_path=cache_path, data=rgd.response, debug_prn=debug_prn)
 
     return rgd
 
-# %% ../nbs/client/client.ipynb 21
+# %% ../nbs/client/client.ipynb 23
 async def looper(
     url,
     client: httpx.AsyncClient,
@@ -209,13 +223,13 @@ async def looper(
     method="GET",
     is_verify_ssl: bool = False,
     is_ignore_cache: bool = False,
-    json_cache_path: str = None,
+    cache_path: str = None,
     **kwargs
 ):
-    json_cache_path = json_cache_path or _generate_cache_name(url)
+    cache_path = cache_path or _generate_cache_name(url)
 
-    if not is_ignore_cache and json_cache_path:
-        json_data = get_cache(json_cache_path=json_cache_path, debug_prn=debug_prn)
+    if not is_ignore_cache and cache_path:
+        json_data = get_cache(cache_path=cache_path, debug_prn=debug_prn)
 
         if json_data:
             return ResponseGetData._from_cache(data=json_data, auth=auth)
@@ -255,6 +269,6 @@ async def looper(
     res.response = final_array
 
     if res.is_success:
-        update_cache(json_cache_path=json_cache_path, json_data=res.response)
+        update_cache(cache_path=cache_path, json_data=res.response, debug_prn=debug_prn)
 
     return res
