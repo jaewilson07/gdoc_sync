@@ -146,7 +146,7 @@ async def get_data(
             return ResponseGetData._from_cache(data=json_data, auth=auth)
 
     is_close_session = False if client else True
-    client = client or httpx.AsyncClient()
+    client = client or httpx.AsyncClient(verify=is_verify_ssl)
 
     headers, url, params, body = prepare_fetch(
         url=url,
@@ -175,11 +175,13 @@ async def get_data(
             headers=headers,
             params=params,
             follow_redirects=True,
-            verify=is_verify_ssl,
         )
     else:
         res = await getattr(client, method)(
-            url=url, headers=headers, params=params, data=body, verify=is_verify_ssl
+            url=url,
+            headers=headers,
+            params=params,
+            data=body,
         )
 
     if is_close_session:
@@ -205,6 +207,7 @@ async def looper(
     debug_api: bool = False,
     debug_prn: bool = False,
     method="GET",
+    is_verify_ssl: bool = False,
     is_ignore_cache: bool = False,
     json_cache_path: str = None,
     **kwargs
@@ -237,6 +240,7 @@ async def looper(
             debug_api=debug_api,
             debug_prn=debug_prn,
             client=client,
+            is_verify_ssl=is_verify_ssl,
             **kwargs
         )
 

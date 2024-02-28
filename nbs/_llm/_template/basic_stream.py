@@ -30,7 +30,6 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
 
     with st.chat_message("assistant"):
-
         llm = ChatOpenAI(
             openai_api_base="http://192.168.1.45:1234/v1/",
             openai_api_key="not-needed",
