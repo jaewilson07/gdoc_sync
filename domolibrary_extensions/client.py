@@ -17,8 +17,8 @@ from pprint import pprint
 import domolibrary_extensions.utils as ut
 
 # %% auto 0
-__all__ = ['looper_offset_params', 'Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'get_data', 'get_data_stream',
-           'looper', 'BaseError_Validation', 'BaseError']
+__all__ = ['looper_offset_params', 'Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'BaseError_Validation', 'BaseError',
+           'get_data', 'get_data_stream', 'looper']
 
 # %% ../nbs/client/client.ipynb 6
 @dataclass
@@ -129,7 +129,34 @@ def update_cache(cache_path: str, data: Any, debug_prn: bool = False):
         if isinstance(data, str):
             return fp.write(data)
 
-# %% ../nbs/client/client.ipynb 16
+# %% ../nbs/client/client.ipynb 15
+class BaseError_Validation(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
+class BaseError(Exception):
+    def __init__(
+        self, instance=None, entity_id=None, message=None, res: ResponseGetData = None
+    ):
+
+        if not (instance and message) and not res:
+            raise BaseError_Validation(
+                "must include instance and message or ResponseGetData class"
+            )
+
+        message = message or res.response["Message"]
+
+        if entity_id:
+            message = f"{message} for {entity_id}"
+
+        if res:
+            message = (
+                f"status {res.status} || {message} in {instance or res.auth.instance}"
+            )
+        super().__init__(message)
+
+# %% ../nbs/client/client.ipynb 17
 def prepare_fetch(
     url: str,
     params: dict = None,
@@ -146,13 +173,13 @@ def prepare_fetch(
 
     return headers, url, params, body
 
-# %% ../nbs/client/client.ipynb 17
+# %% ../nbs/client/client.ipynb 18
 def _generate_cache_name(url):
     uparse = urlparse(url)
 
     return f"./CACHE/{''.join([uparse.netloc.replace('.', '_'), uparse.path.replace('.', '_')])}.json"
 
-# %% ../nbs/client/client.ipynb 19
+# %% ../nbs/client/client.ipynb 20
 async def get_data(
     url: str,
     method: str,
@@ -227,7 +254,7 @@ async def get_data(
 
     return rgd
 
-# %% ../nbs/client/client.ipynb 22
+# %% ../nbs/client/client.ipynb 23
 async def get_data_stream(
     url: str,
     cache_path: str = None,
@@ -305,7 +332,7 @@ async def get_data_stream(
 
     return rgd
 
-# %% ../nbs/client/client.ipynb 24
+# %% ../nbs/client/client.ipynb 25
 looper_offset_params = {"offset": "offset", "limit": "limit"}
 
 
@@ -369,7 +396,7 @@ async def looper(
             **kwargs
         )
 
-        if return_raw:
+        if not res.is_success or return_raw:
             return res
 
         new_array = arr_fn(res)
@@ -389,30 +416,3 @@ async def looper(
         update_cache(cache_path=cache_path, data=res.response, debug_prn=debug_prn)
 
     return res
-
-# %% ../nbs/client/client.ipynb 25
-class BaseError_Validation(Exception):
-    def __init__(self, message):
-        super().__init__(message)
-
-
-class BaseError(Exception):
-    def __init__(
-        self, instance=None, entity_id=None, message=None, res: ResponseGetData = None
-    ):
-
-        if not (instance and message) and not res:
-            raise BaseError_Validation(
-                "must include instance and message or ResponseGetData class"
-            )
-
-        message = message or res.response["Message"]
-
-        if entity_id:
-            message = f"{message} for {entity_id}"
-
-        if res:
-            message = (
-                f"status {res.status} || {message} in {instance or res.auth.instance}"
-            )
-        super().__init__(message)

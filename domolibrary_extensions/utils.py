@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 from markdownify import MarkdownConverter
 
 import datetime as dt
+import base64
 
 import asyncio
 
@@ -324,7 +325,7 @@ def get_all_files_and_folders(
 
     return file_ls, dir_ls
 
-# %% ../nbs/utils.ipynb 24
+# %% ../nbs/utils.ipynb 26
 class ImageBlockConverter(MarkdownConverter):
     """
     Create a custom MarkdownConverter that adds two newlines after an image
@@ -365,7 +366,7 @@ def md(html, **options):
     """Create shorthand method for handling conversion"""
     return ImageBlockConverter(**options).convert(html)
 
-# %% ../nbs/utils.ipynb 25
+# %% ../nbs/utils.ipynb 27
 def convert_html_to_markdown(file_path):
     """converts html file to markdown in place"""
 
@@ -386,7 +387,7 @@ def convert_html_to_markdown(file_path):
 
     return
 
-# %% ../nbs/utils.ipynb 26
+# %% ../nbs/utils.ipynb 28
 def download_zip(zip_bytes_content, output_folder, is_convert_to_markdown: bool = True):
     """save bytes content to a zip file then convert html to markdown"""
 
@@ -406,7 +407,7 @@ def download_zip(zip_bytes_content, output_folder, is_convert_to_markdown: bool 
 
     return f"successfully downloaded zip to {output_folder}"
 
-# %% ../nbs/utils.ipynb 29
+# %% ../nbs/utils.ipynb 31
 def download_pptx(
     pptx_bytes_content, output_folder, is_convert_to_markdown: bool = True
 ):
@@ -429,13 +430,13 @@ def download_pptx(
 
     return f"successfully downloaded content to {output_folder}"
 
-# %% ../nbs/utils.ipynb 33
+# %% ../nbs/utils.ipynb 35
 def convert_str_to_snake_case(text_str):
     """converts 'snake_case_str' to 'snakeCaseStr'"""
 
     return text_str.replace(" ", "_").lower()
 
-# %% ../nbs/utils.ipynb 34
+# %% ../nbs/utils.ipynb 36
 def convert_str_remove_accents(text_str: str) -> str:
     return "".join(
         c
@@ -443,13 +444,13 @@ def convert_str_remove_accents(text_str: str) -> str:
         if unicodedata.category(c) != "Mn"
     )
 
-# %% ../nbs/utils.ipynb 36
+# %% ../nbs/utils.ipynb 38
 def convert_str_keep_alphanumeric(text_str) -> str:
     pattern = "[^0-9a-zA-Z_\s]+"
 
     return re.sub(pattern, "", text_str)
 
-# %% ../nbs/utils.ipynb 37
+# %% ../nbs/utils.ipynb 39
 def convert_str_file_name(text_str: str) -> str:
     """convert strings to clean file name or url"""
 
@@ -457,7 +458,7 @@ def convert_str_file_name(text_str: str) -> str:
         convert_str_to_snake_case(convert_str_remove_accents(text_str))
     )
 
-# %% ../nbs/utils.ipynb 40
+# %% ../nbs/utils.ipynb 42
 def convert_str_to_date(datefield: str) -> dt.datetime:
     """converts string date to datetime object"""
     return dtu_parse(datefield) if datefield else None
