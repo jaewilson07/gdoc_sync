@@ -17,8 +17,8 @@ from pprint import pprint
 import domolibrary_extensions.utils as ut
 
 # %% auto 0
-__all__ = ['Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'get_data', 'get_data_stream', 'looper',
-           'BaseError_Validation', 'BaseError']
+__all__ = ['looper_offset_params', 'Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'get_data', 'get_data_stream',
+           'looper', 'BaseError_Validation', 'BaseError']
 
 # %% ../nbs/client/client.ipynb 6
 @dataclass
@@ -46,13 +46,30 @@ class ResponseGetData:
         self.is_success = True if self.status >= 200 and self.status <= 399 else False
 
     @classmethod
-    def _from_httpx(cls, res: httpx.Response, auth: Any = None, content=None):
-
-        response = res.json() if not res.is_success else (content or res.json())
+    def _from_httpx(cls, res: httpx.Response, auth: Any = None):
 
         return cls(
             status=res.status_code,
-            response=response,
+            response=res.json(),
+            is_success=res.is_success,
+            is_from_cache=False,
+            auth=auth,
+        )
+
+    @classmethod
+    def _from_stream(
+        cls,
+        res: httpx.Response,
+        content,
+        auth: Any = None,
+    ):
+
+        if not res.is_success:
+            content = res.json()
+
+        return cls(
+            status=res.status_code,
+            response=content,
             is_success=res.is_success,
             is_from_cache=False,
             auth=auth,
@@ -223,6 +240,7 @@ async def get_data_stream(
     debug_api: bool = False,
     debug_prn: bool = False,
     client: httpx.AsyncClient = None,
+    is_text: bool = False,  # if false will interpret as bytes
     is_verify_ssl: bool = False,
 ) -> ResponseGetData:
     """wrapper for httpx Request library, always use with jiralibrary class"""
@@ -269,13 +287,18 @@ async def get_data_stream(
         params=params,
         follow_redirects=True,
     ) as res:
-        async for chunk in res.aiter_bytes():
-            content += chunk
+        if is_text:
+            async for chunk in res.aiter_text():
+                content += chunk
+
+        else:
+            async for chunk in res.aiter_bytes():
+                content += chunk
 
     if is_close_session:
         await client.aclose()
 
-    rgd = ResponseGetData._from_httpx(res, auth=auth, content=content)
+    rgd = ResponseGetData._from_stream(res, auth=auth, content=content)
 
     if rgd.is_success:
         update_cache(cache_path=cache_path, data=rgd.response, debug_prn=debug_prn)
@@ -283,14 +306,20 @@ async def get_data_stream(
     return rgd
 
 # %% ../nbs/client/client.ipynb 24
+looper_offset_params = {"offset": "offset", "limit": "limit"}
+
+
 async def looper(
     url,
     client: httpx.AsyncClient,
     auth: Auth,
     arr_fn,
-    params: dict = None,
     offset=0,
     limit=50,
+    params: dict = None,
+    body: dict = None,
+    offset_params: dict = None,
+    offset_params_is_header: bool = False,
     debug_loop: bool = False,
     debug_api: bool = False,
     debug_prn: bool = False,
@@ -298,8 +327,11 @@ async def looper(
     is_verify_ssl: bool = False,
     is_ignore_cache: bool = False,
     cache_path: str = None,
+    return_raw: bool = False,  # will break the looper after the first request and ignore the array processing step.
     **kwargs
 ):
+    offset_params = offset_params or looper_offset_params
+
     cache_path = cache_path or _generate_cache_name(url)
 
     if not is_ignore_cache and cache_path:
@@ -313,11 +345,15 @@ async def looper(
 
     while keep_looping:
         new_params = params.copy() if params else {}
-
-        new_params = {**new_params, "startAt": offset, "maxResults": limit}
-
-        if debug_loop:
-            print({"startAt": offset, "maxResults": limit, **new_params})
+        new_body = body.copy() if body else {}
+        new_offset = {
+            offset_params["offset"]: offset,
+            offset_params["limit"]: limit,
+        }
+        if offset_params_is_header:
+            new_params = {**new_params, **new_offset}
+        else:
+            new_body = {**new_body, **new_offset}
 
         res = await get_data(
             is_ignore_cache=True,
@@ -329,10 +365,17 @@ async def looper(
             debug_prn=debug_prn,
             client=client,
             is_verify_ssl=is_verify_ssl,
+            body=new_body,
             **kwargs
         )
 
+        if return_raw:
+            return res
+
         new_array = arr_fn(res)
+
+        if debug_loop:
+            print(new_params, new_body, new_array)
 
         if not new_array or len(new_array) == 0:
             keep_looping = False
