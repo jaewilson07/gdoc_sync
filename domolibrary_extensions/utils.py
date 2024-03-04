@@ -8,6 +8,9 @@ __all__ = ['default_keys', 'export_env', 'gather_with_concurrency', 'rename_file
            'convert_str_file_name', 'convert_str_to_date']
 
 # %% ../nbs/utils.ipynb 3
+from PIL.Image import Image
+
+# %% ../nbs/utils.ipynb 4
 import os
 from typing import List, Tuple, Union
 
@@ -20,6 +23,7 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 from markdownify import MarkdownConverter
+import PIL
 
 import datetime as dt
 import base64
@@ -27,7 +31,6 @@ import base64
 import asyncio
 
 import pptx2md
-from PIL import Image
 
 import zipfile
 import io
@@ -38,7 +41,9 @@ from dateutil.parser import parse as dtu_parse
 
 from dotenv import set_key, load_dotenv
 
-# %% ../nbs/utils.ipynb 6
+from nbdev.showdoc import patch_to
+
+# %% ../nbs/utils.ipynb 7
 default_keys = [
     "DOCKER_BUILDKIT",
     "ENABLE_DYNAMIC_INSTALL",
@@ -170,7 +175,7 @@ def export_env(default_keys, output_file_path):
         )
         f.write(f"_OUTPUT_DATE = '{dt.datetime.now().strftime('%Y-%m-%d %H:%M')}'")
 
-# %% ../nbs/utils.ipynb 9
+# %% ../nbs/utils.ipynb 10
 async def gather_with_concurrency(
     *coros,  # list of coroutines to await
     n=60,  # number of open coroutines
@@ -185,7 +190,7 @@ async def gather_with_concurrency(
 
     return await asyncio.gather(*(sem_coro(c) for c in coros))
 
-# %% ../nbs/utils.ipynb 11
+# %% ../nbs/utils.ipynb 12
 def rename_filepath_to_match_datatype(data, file_path):
 
     is_path_ext = os.path.splitext(file_path)[-1].lower()
@@ -208,7 +213,7 @@ def rename_filepath_to_match_datatype(data, file_path):
 
     return file_path
 
-# %% ../nbs/utils.ipynb 13
+# %% ../nbs/utils.ipynb 14
 def detect_encoding(file_path, debug_prn: bool = False):
     detector = chardet.universaldetector.UniversalDetector()
     with open(file_path, "rb") as f:
@@ -222,7 +227,7 @@ def detect_encoding(file_path, debug_prn: bool = False):
 
     return encoding
 
-# %% ../nbs/utils.ipynb 15
+# %% ../nbs/utils.ipynb 16
 def read_html_file(
     file_path, is_convert_to_soup: bool = True
 ) -> Union[str, BeautifulSoup]:
@@ -237,12 +242,12 @@ def read_html_file(
 
         return fp.read()
 
-# %% ../nbs/utils.ipynb 17
+# %% ../nbs/utils.ipynb 18
 def remove_query_params_from_url(url):
     u = urlparse(url)
     return urljoin(url, urlparse(url).path)
 
-# %% ../nbs/utils.ipynb 19
+# %% ../nbs/utils.ipynb 20
 def update_env(env_path: str, key: str, value: str, debug_prn: bool = False) -> dict:
     """
     updates a .env file with a key value pair
@@ -280,7 +285,7 @@ def update_env(env_path: str, key: str, value: str, debug_prn: bool = False) -> 
 
     return {key: os.getenv(key)}
 
-# %% ../nbs/utils.ipynb 20
+# %% ../nbs/utils.ipynb 21
 def upsert_folder(folder_path: str, debug_prn: bool = False):
     folder_path = os.path.dirname(folder_path)
 
@@ -295,7 +300,7 @@ def upsert_folder(folder_path: str, debug_prn: bool = False):
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-# %% ../nbs/utils.ipynb 21
+# %% ../nbs/utils.ipynb 22
 def get_all_files_and_folders(
     directory, file_type=None  # to only retrieve a specific file type
 ) -> Union[Tuple, List]:
@@ -325,7 +330,34 @@ def get_all_files_and_folders(
 
     return file_ls, dir_ls
 
-# %% ../nbs/utils.ipynb 26
+# %% ../nbs/utils.ipynb 25
+@patch_to(Image, cls_method=True)
+def from_image_file(cls, image_path: str) -> Image:
+    if not os.path.exists(image_path):
+        raise FileNotFoundError(image_path)
+
+    with open(image_path, "rb") as image_file:
+        data = base64.b64encode(image_file.read())
+        im = PIL.Image.open(io.BytesIO(base64.b64decode(data)))
+
+        im.base64 = data
+        im.image_type = os.path.splitext(image_path)[1][1:]
+
+        return im
+
+# %% ../nbs/utils.ipynb 28
+@patch_to(Image)
+def to_decoded_str(self, add_html_encoding: bool = False) -> str:
+    """decodes the bytestring to string, optionally add HTML encoding for use in websites or by APIs"""
+
+    text = f"{self.base64.decode()}"
+    if add_html_encoding:
+        html_encoding = f"data:image/{self.image_type};base64,"
+        return html_encoding + text
+
+    return text
+
+# %% ../nbs/utils.ipynb 31
 class ImageBlockConverter(MarkdownConverter):
     """
     Create a custom MarkdownConverter that adds two newlines after an image
@@ -348,7 +380,7 @@ class ImageBlockConverter(MarkdownConverter):
                 os.path.dirname(self.options["file_path"]), el["src"]
             )
 
-            image = Image.open(file_path)
+            image = PIL.Image.open(file_path)
 
             width = style_obj["width"].replace("px", "")
             width = int(float(width))
@@ -366,7 +398,7 @@ def md(html, **options):
     """Create shorthand method for handling conversion"""
     return ImageBlockConverter(**options).convert(html)
 
-# %% ../nbs/utils.ipynb 27
+# %% ../nbs/utils.ipynb 32
 def convert_html_to_markdown(file_path):
     """converts html file to markdown in place"""
 
@@ -387,7 +419,7 @@ def convert_html_to_markdown(file_path):
 
     return
 
-# %% ../nbs/utils.ipynb 28
+# %% ../nbs/utils.ipynb 33
 def download_zip(zip_bytes_content, output_folder, is_convert_to_markdown: bool = True):
     """save bytes content to a zip file then convert html to markdown"""
 
@@ -407,7 +439,7 @@ def download_zip(zip_bytes_content, output_folder, is_convert_to_markdown: bool 
 
     return f"successfully downloaded zip to {output_folder}"
 
-# %% ../nbs/utils.ipynb 31
+# %% ../nbs/utils.ipynb 36
 def download_pptx(
     pptx_bytes_content, output_folder, is_convert_to_markdown: bool = True
 ):
@@ -430,13 +462,13 @@ def download_pptx(
 
     return f"successfully downloaded content to {output_folder}"
 
-# %% ../nbs/utils.ipynb 35
+# %% ../nbs/utils.ipynb 40
 def convert_str_to_snake_case(text_str):
     """converts 'snake_case_str' to 'snakeCaseStr'"""
 
     return text_str.replace(" ", "_").lower()
 
-# %% ../nbs/utils.ipynb 36
+# %% ../nbs/utils.ipynb 41
 def convert_str_remove_accents(text_str: str) -> str:
     return "".join(
         c
@@ -444,13 +476,13 @@ def convert_str_remove_accents(text_str: str) -> str:
         if unicodedata.category(c) != "Mn"
     )
 
-# %% ../nbs/utils.ipynb 38
+# %% ../nbs/utils.ipynb 43
 def convert_str_keep_alphanumeric(text_str) -> str:
     pattern = "[^0-9a-zA-Z_\s]+"
 
     return re.sub(pattern, "", text_str)
 
-# %% ../nbs/utils.ipynb 39
+# %% ../nbs/utils.ipynb 44
 def convert_str_file_name(text_str: str) -> str:
     """convert strings to clean file name or url"""
 
@@ -458,7 +490,7 @@ def convert_str_file_name(text_str: str) -> str:
         convert_str_to_snake_case(convert_str_remove_accents(text_str))
     )
 
-# %% ../nbs/utils.ipynb 42
+# %% ../nbs/utils.ipynb 47
 def convert_str_to_date(datefield: str) -> dt.datetime:
     """converts string date to datetime object"""
     return dtu_parse(datefield) if datefield else None
