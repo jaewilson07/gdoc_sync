@@ -12,7 +12,7 @@ import domolibrary_extensions.client as gd
 # %% auto 0
 __all__ = ['AsanaAuth']
 
-# %% ../../nbs/asana/00_auth.ipynb 5
+# %% ../../nbs/asana/00_auth.ipynb 4
 @dataclass
 class AsanaAuth(gd.Auth):
     token: str = field(repr=False)

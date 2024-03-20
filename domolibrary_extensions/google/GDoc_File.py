@@ -15,7 +15,7 @@ import datetime as dt
 
 from googleapiclient.errors import HttpError
 
-from domolibrary_extensions.utils import (
+from domolibrary_extensions.utils.utils import (
     upsert_folder,
     convert_str_to_date,
     convert_str_file_name,

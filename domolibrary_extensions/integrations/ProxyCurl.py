@@ -6,8 +6,9 @@ __all__ = ['ProxyCurlAuth', 'get_linked_in_profile_route', 'scrape_linkedin_prof
 # %% ../../nbs/integrations/proxycurl.ipynb 3
 from dataclasses import dataclass, field
 import httpx
-import domolibrary_extensions.client as gd
 import inspect
+
+import domolibrary_extensions.client as gd
 
 # %% ../../nbs/integrations/proxycurl.ipynb 6
 @dataclass

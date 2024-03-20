@@ -9,7 +9,7 @@ import os
 from dataclasses import dataclass, field
 from typing import List
 
-from domolibrary_extensions.utils import convert_str_file_name
+from domolibrary_extensions.utils.utils import convert_str_file_name
 import domolibrary_extensions.google.auth as ga
 import domolibrary_extensions.google.GDoc_File as gd
 

@@ -9,7 +9,7 @@ import datetime as dt
 
 from nbdev.showdoc import patch_to
 
-import domolibrary_extensions.utils as ut
+import domolibrary_extensions.utils.utils as ut
 import domolibrary_extensions.client as gd
 import domolibrary_extensions.asana.auth as aa
 import domolibrary_extensions.asana.user as au

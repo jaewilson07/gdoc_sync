@@ -14,7 +14,7 @@ import httpx
 import json
 
 from pprint import pprint
-import domolibrary_extensions.utils as ut
+import domolibrary_extensions.utils.utils as ut
 
 # %% auto 0
 __all__ = ['looper_offset_params', 'Auth', 'ResponseGetData', 'get_cache', 'update_cache', 'BaseError_Validation', 'BaseError',
@@ -116,7 +116,6 @@ def update_cache(cache_path: str, data: Any, debug_prn: bool = False):
 
     if debug_prn:
         print(f"updating {type(data)} content to {cache_path}")
-        print(data)
 
     if isinstance(data, bytearray) or isinstance(data, bytes):
         with open(cache_path, "wb") as bf:
