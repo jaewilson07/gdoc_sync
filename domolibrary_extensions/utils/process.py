@@ -18,6 +18,7 @@ import domolibrary_extensions.client as dec
 class ProcessMessage:
     stage: str  # description of the stage of a process
     message: str = "init"  # outcome
+    stage_num: int = None
     is_success: bool = False
 
     """class for logging a stage of a process"""
@@ -38,16 +39,29 @@ class ProcessResponse:
         repr=False, default=None
     )  # final object to return from the process_function
     is_success: bool = False
+    location = None
 
     """Response class for handling logging of a process function.
     Accumulates messages as the process unfolds
     """
 
     def to_json(self) -> List[dict]:
-        columns = ["function_name", "stage", "id", "is_success", "message", "response"]
+        columns = [
+            "location",
+            "function_name",
+            "stage_num",
+            "stage",
+            "id",
+            "is_success",
+            "message",
+            "response",
+        ]
         s = [{**self.__dict__, **msg.to_json()} for msg in self.message]
 
-        return [{col: obj[col] for col in columns} for obj in s]
+        return [
+            {col: obj[col] for col in columns if col in obj.keys() and obj.get(col)}
+            for obj in s
+        ]
 
     def add_message(self, message: ProcessMessage):
         self.message.append(message)
