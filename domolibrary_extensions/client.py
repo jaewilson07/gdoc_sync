@@ -47,7 +47,6 @@ class ResponseGetData:
 
     @classmethod
     def _from_httpx(cls, res: httpx.Response, auth: Any = None):
-
         return cls(
             status=res.status_code,
             response=res.json(),
@@ -63,7 +62,6 @@ class ResponseGetData:
         content,
         auth: Any = None,
     ):
-
         if not res.is_success:
             content = res.json()
 
@@ -109,7 +107,6 @@ def get_cache(cache_path: str, debug_prn: bool = False) -> Union[dict, None]:
 
 
 def update_cache(cache_path: str, data: Any, debug_prn: bool = False):
-
     ut.upsert_folder(cache_path)
 
     cache_path = ut.rename_filepath_to_match_datatype(data, cache_path)
@@ -138,7 +135,6 @@ class BaseError(Exception):
     def __init__(
         self, instance=None, entity_id=None, message=None, res: ResponseGetData = None
     ):
-
         if not (instance and message) and not res:
             raise BaseError_Validation(
                 "must include instance and message or ResponseGetData class"

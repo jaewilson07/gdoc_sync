@@ -60,7 +60,6 @@ async def gather_with_concurrency(
 
 # %% ../../nbs/utils/utils.ipynb 9
 def rename_filepath_to_match_datatype(data, file_path):
-
     is_path_ext = os.path.splitext(file_path)[-1].lower()
 
     old_suffix = pathlib.Path(file_path).suffix if is_path_ext else None
